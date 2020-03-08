@@ -1,0 +1,57 @@
+create database MyStuff;
+
+create table akun (
+	id_admin char(6) not null primary key,
+	password varchar(20) not null
+	)ENGINE = InnoDB;
+
+create table admin_penjualan (
+	no int not null AUTO_INCREMENT,
+	id_admin char(6) not null,
+	nama_admin varchar(25) not null, 
+	alamat_admin varchar(50) not null,
+	primary key (no)
+	)Engine = InnoDB;
+
+alter table admin_penjualan add foreign key (id_admin) references akun(id_admin);
+
+create table admin_pengawasan (
+	no int not null AUTO_INCREMENT,
+	id_admin char(6) not null,
+	nama_admin varchar(25) not null, 
+	alamat_admin varchar(50) not null,
+	primary key (no),
+	Foreign key (id_admin) references akun(id_admin)
+	)Engine = InnoDB;
+
+create table admin_pembelian (
+	no int not null AUTO_INCREMENT,
+	id_admin char(6) not null,
+	nama_admin varchar(25) not null, 
+	alamat_admin varchar(50) not null,
+	primary key (no),
+	Foreign key (id_admin) references akun(id_admin)
+	)Engine = InnoDB;
+
+create table barang (
+	id_barang char(6) not null primary key,
+	nama_barang varchar(30) not null,
+	stok int(3) not null,
+	harga int(7) not null,
+	harga_rata int(7)
+	)Engine = InnoDB;
+
+create table transaksi (
+	id_transaksi int not null auto_increment,
+	tgl_transaksi timestamp DEFAULT CURRENT_TIMESTAMP,
+	id_barang char(6) not null,
+	nama_barang varchar(30) not null,
+	jumlah_stok int(3) not null,
+	harga int(7),
+	primary key(id_transaksi),
+	foreign key (id_barang) references barang(id_barang)
+	)Engine = InnoDB;	
+
+alter table barang DROP PRIMARY KEY;
+ALTER TABLE barang ADD PRIMARY KEY (id_barang, nama_barang);
+alter table transaksi DROP FOREIgN KEY id_barang;
