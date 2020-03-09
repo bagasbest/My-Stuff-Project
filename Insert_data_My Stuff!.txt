@@ -1,0 +1,3 @@
+insert into akun values ('ADMU01','ADMU123');
+insert into akun values ('ADPB01','ADPB234');
+insert into akun values ('ADPJ01','ADPJ345');
