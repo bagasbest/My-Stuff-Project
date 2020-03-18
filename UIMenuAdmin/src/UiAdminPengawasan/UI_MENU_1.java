@@ -17,12 +17,12 @@ import static javax.swing.JOptionPane.YES_OPTION;
  *
  * @author User
  */
-public class UI_MENU extends javax.swing.JFrame {
+public class UI_MENU_1 extends javax.swing.JFrame {
 
     /**
      * Creates new form UI_MENU
      */
-    public UI_MENU() {
+    public UI_MENU_1() {
         
         initComponents();
         setLocationRelativeTo(null);
@@ -48,12 +48,8 @@ public class UI_MENU extends javax.swing.JFrame {
         logout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        edit = new javax.swing.JLabel();
         inven = new javax.swing.JLabel();
-        cash = new javax.swing.JLabel();
         editstring = new javax.swing.JLabel();
-        invenstring = new javax.swing.JLabel();
-        cashstring = new javax.swing.JLabel();
         menustring = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,7 +84,7 @@ public class UI_MENU extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(25, 25, 25));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Admin Pengawasan");
+        jLabel1.setText("Admin Pembelian");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,9 +122,6 @@ public class UI_MENU extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        edit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/product.png"))); // NOI18N
-
         inven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inven.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/inventory.png"))); // NOI18N
         inven.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,70 +130,30 @@ public class UI_MENU extends javax.swing.JFrame {
             }
         });
 
-        cash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/cashier.png"))); // NOI18N
-
         editstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         editstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         editstring.setText("Tambah Barang");
         editstring.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        invenstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        invenstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        invenstring.setText("Cek Barang");
-        invenstring.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                invenstringMouseClicked(evt);
-            }
-        });
-
-        cashstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cashstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cashstring.setText("Penjualan");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(inven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(118, 118, 118)
-                .addComponent(edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(302, 302, 302))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(17, 17, 17)
-                    .addComponent(editstring, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                    .addGap(142, 142, 142)
-                    .addComponent(invenstring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(142, 142, 142)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(cash, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                        .addComponent(cashstring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGap(17, 17, 17)))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editstring, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(46, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(cash, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(editstring, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(invenstring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cashstring, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)))
-                    .addContainerGap()))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inven)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(editstring, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         menustring.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -212,14 +165,14 @@ public class UI_MENU extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
                 .addGap(430, 430, 430)
                 .addComponent(menustring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(437, 437, 437))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,28 +182,11 @@ public class UI_MENU extends javax.swing.JFrame {
                 .addComponent(menustring, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void invenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenMouseClicked
-        // TODO add your handling code here:
-       dispose();
-        UI_cekBarang UP = new UI_cekBarang();
-        dispose();
-        UP.setVisible(true);
-    }//GEN-LAST:event_invenMouseClicked
-
-    private void invenstringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenstringMouseClicked
-        // TODO add your handling code here:
-        dispose();
-        UI_cekBarang UP = new UI_cekBarang();
-        dispose();
-        UP.setVisible(true);
-        
-    }//GEN-LAST:event_invenstringMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
@@ -268,9 +204,9 @@ public class UI_MENU extends javax.swing.JFrame {
         if (maximized){
 
             //fullscreen - taskbar
-            UI_MENU.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            UI_MENU_1.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            UI_MENU.this.setMaximizedBounds(env.getMaximumWindowBounds());
+            UI_MENU_1.this.setMaximizedBounds(env.getMaximumWindowBounds());
             maximized = false;
         }
         else{
@@ -283,6 +219,10 @@ public class UI_MENU extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_closeMouseClicked
+
+    private void invenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_invenMouseClicked
 
     /**
      * @param args the command line arguments
@@ -310,9 +250,6 @@ public class UI_MENU extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UI_MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -323,13 +260,9 @@ public class UI_MENU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cash;
-    private javax.swing.JLabel cashstring;
     private javax.swing.JLabel close;
-    private javax.swing.JLabel edit;
     private javax.swing.JLabel editstring;
     private javax.swing.JLabel inven;
-    private javax.swing.JLabel invenstring;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
