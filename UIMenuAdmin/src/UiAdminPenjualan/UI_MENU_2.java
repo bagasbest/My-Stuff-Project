@@ -1,3 +1,5 @@
+package UiAdminPenjualan;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,39 +7,41 @@
  */
 
 
-package UiAdminPengawasan;
-
-
 import Koneksi.koneksi;
+import Login.Login;
+import UiAdminPengawasan.UI_MENU;
 import java.awt.GraphicsEnvironment;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_OPTION;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
- * @author user
+ * @author User
  */
-public class UI_cekBarang extends javax.swing.JFrame {
+public class UI_MENU_2 extends javax.swing.JFrame {
     String stok;
     private DefaultTableModel model;
 
     /**
-     * Creates new form UI_adminPengawasan
+     * Creates new form UI_MENU
      */
-    public UI_cekBarang() throws SQLException {
+    public UI_MENU_2() {
+        
         initComponents();
         setLocationRelativeTo(null);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         
-        getDatabase();
+         getDatabase();
+        
     }
     static boolean maximized =true;
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,27 +51,22 @@ public class UI_cekBarang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menustring = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         close = new javax.swing.JLabel();
         maximizer = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        logout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        back_menu = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        menustring1 = new javax.swing.JLabel();
+        menustring = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_barang = new javax.swing.JTable();
         et_searchbar = new javax.swing.JTextField();
-        cb_stok = new javax.swing.JComboBox<>();
         searchBar = new javax.swing.JLabel();
+        cb_stok = new javax.swing.JComboBox<>();
         cb_jenis = new javax.swing.JComboBox<>();
 
-        menustring.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        menustring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menustring.setText("MENU");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(37, 37, 37));
@@ -87,40 +86,36 @@ public class UI_cekBarang extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cek Barang");
-
-        back_menu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        back_menu.setForeground(new java.awt.Color(255, 255, 255));
-        back_menu.setText("MENU");
-        back_menu.addMouseListener(new java.awt.event.MouseAdapter() {
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/logout24.png"))); // NOI18N
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                back_menuMouseClicked(evt);
+                logoutMouseClicked(evt);
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/my stuff.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel1.setBackground(new java.awt.Color(25, 25, 25));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Admin Penjualan");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator2)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(maximizer, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(maximizer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(back_menu, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,18 +128,16 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(back_menu))
-                .addGap(19, 19, 19))
+                .addComponent(logout)
+                .addContainerGap())
         );
 
-        menustring1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        menustring1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menustring1.setText("Cek Barang");
+        menustring.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        menustring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menustring.setText("Selamat Datang, nama");
 
         tb_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,6 +150,11 @@ public class UI_cekBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_barangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_barang);
 
         et_searchbar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -166,17 +164,17 @@ public class UI_cekBarang extends javax.swing.JFrame {
             }
         });
 
-        cb_stok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Keseluruhan", "Stok Tertinggi", "Stok Ter-rendah" }));
-        cb_stok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_stokActionPerformed(evt);
-            }
-        });
-
         searchBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/ic_search.png"))); // NOI18N
         searchBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBarMouseClicked(evt);
+            }
+        });
+
+        cb_stok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Keseluruhan", "Stok Ter-rendah", "Stok Tertinggi" }));
+        cb_stok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_stokActionPerformed(evt);
             }
         });
 
@@ -195,9 +193,9 @@ public class UI_cekBarang extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menustring1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menustring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cb_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cb_jenis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,35 +209,31 @@ public class UI_cekBarang extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(menustring1)
-                .addGap(69, 69, 69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(menustring, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(et_searchbar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cb_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cb_jenis, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(et_searchbar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_closeMouseClicked
 
     private void maximizerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizerMouseClicked
         // TODO add your handling code here:
         if (maximized){
 
             //fullscreen - taskbar
-            UI_cekBarang.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            UI_MENU_2.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            UI_cekBarang.this.setMaximizedBounds(env.getMaximumWindowBounds());
+            UI_MENU_2.this.setMaximizedBounds(env.getMaximumWindowBounds());
             maximized = false;
         }
         else{
@@ -248,6 +242,22 @@ public class UI_cekBarang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_maximizerMouseClicked
 
+    private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_closeMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Logout? ","Konfirmasi Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+            dispose();
+            Login UP = new Login();
+            dispose();
+            UP.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutMouseClicked
+
     private void et_searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_et_searchbarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_et_searchbarActionPerformed
@@ -255,17 +265,7 @@ public class UI_cekBarang extends javax.swing.JFrame {
     private void cb_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_stokActionPerformed
         // TODO add your handling code here:
         loadDataStok();
-        
     }//GEN-LAST:event_cb_stokActionPerformed
-
-    private void back_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_menuMouseClicked
-        // TODO add your handling code here:
-        dispose();
-        UI_MENU UP = new UI_MENU();
-        dispose();
-        UP.setVisible(true);
-        
-    }//GEN-LAST:event_back_menuMouseClicked
 
     private void cb_jenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_jenisActionPerformed
         // TODO add your handling code here:
@@ -303,6 +303,33 @@ public class UI_cekBarang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchBarMouseClicked
 
+    
+    updateBarang u = new updateBarang();
+    
+    private void tb_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_barangMouseClicked
+        // TODO add your handling code here:
+        int index = tb_barang.getSelectedRow();
+        TableModel model = tb_barang.getModel();
+        String id = model.getValueAt(index, 0).toString();
+        String nama = model.getValueAt(index, 1).toString();
+        String stok = model.getValueAt(index, 2).toString();
+        String harga = model.getValueAt(index, 3).toString();
+        String hargarata = model.getValueAt(index, 4).toString();
+        String jenis = model.getValueAt(index, 5).toString();
+        
+        u.setVisible(true);
+        u.pack();
+        u.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        u.et_id.setText(id);
+        u.et_nama.setText(nama);
+        u.et_stok.setText(stok);
+        u.et_harga.setText(harga);
+        u.et_rata.setText(hargarata);
+        u.et_jenis.setText(jenis);
+ 
+    }//GEN-LAST:event_tb_barangMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -320,61 +347,53 @@ public class UI_cekBarang extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UI_cekBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UI_cekBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UI_cekBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UI_cekBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new UI_cekBarang().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(UI_cekBarang.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new UI_MENU().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel back_menu;
     private javax.swing.JComboBox<String> cb_jenis;
     private javax.swing.JComboBox<String> cb_stok;
     private javax.swing.JLabel close;
     private javax.swing.JTextField et_searchbar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel logout;
     private javax.swing.JLabel maximizer;
     private javax.swing.JLabel menustring;
-    private javax.swing.JLabel menustring1;
     private javax.swing.JLabel searchBar;
     private javax.swing.JTable tb_barang;
     // End of variables declaration//GEN-END:variables
-
+ 
     private void getDatabase() {
-       
-        
        model = new DefaultTableModel();
        tb_barang.setModel(model);
        
        model.addColumn("ID Barang");
        model.addColumn("Nama Barang");
        model.addColumn("stok");
+       model.addColumn("Jenis Barang");
        model.addColumn("Harga");
        model.addColumn("Harga rata");
-       model.addColumn("Jenis Barang");
-       
-      
        
        koneksi kon = new koneksi();
        kon.getData();
@@ -398,9 +417,11 @@ public class UI_cekBarang extends javax.swing.JFrame {
         }catch(SQLException err){
             JOptionPane.showMessageDialog(null, err.getMessage());
         }
-  
+       
     }
-
+    
+    
+    
     private void loadDataStok() {
         koneksi kon = new koneksi();
         kon.getData();
@@ -477,8 +498,7 @@ public class UI_cekBarang extends javax.swing.JFrame {
         }
     }
     
-    
-    private void loadDataJenis(){
+      private void loadDataJenis(){
         koneksi kon = new koneksi();
         kon.getData();
         
@@ -584,4 +604,8 @@ public class UI_cekBarang extends javax.swing.JFrame {
    
         }
     }
+      
+    
+
+
 }

@@ -10,7 +10,7 @@ import Koneksi.koneksi;
 import UiAdminPengawasan.UI_MENU;
 import UiAdminPengawasan.UI_MENU;
 import UiAdminPengawasan.UI_MENU_1;
-import UiAdminPengawasan.UI_MENU_2;
+import UiAdminPenjualan.UI_MENU_2;
 import java.awt.GraphicsEnvironment;
 import java.sql.ResultSet;
 import java.sql.Statement;
