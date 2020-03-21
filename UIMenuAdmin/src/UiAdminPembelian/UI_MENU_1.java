@@ -1,4 +1,4 @@
-package UiAdminPengawasan;
+package UiAdminPembelian;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,6 +7,7 @@ package UiAdminPengawasan;
  */
 
 
+import UiAdminPengawasan.*;
 import Login.Login;
 import java.awt.GraphicsEnvironment;
 import javax.swing.JFrame;

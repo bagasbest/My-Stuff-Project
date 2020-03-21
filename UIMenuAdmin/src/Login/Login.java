@@ -9,7 +9,7 @@ import Daftar.Daftar;
 import Koneksi.koneksi;
 import UiAdminPengawasan.UI_MENU;
 import UiAdminPengawasan.UI_MENU;
-import UiAdminPengawasan.UI_MENU_1;
+import UiAdminPembelian.UI_MENU_1;
 import UiAdminPenjualan.UI_MENU_2;
 import java.awt.GraphicsEnvironment;
 import java.sql.ResultSet;
