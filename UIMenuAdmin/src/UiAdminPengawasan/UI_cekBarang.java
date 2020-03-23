@@ -32,7 +32,7 @@ public class UI_cekBarang extends javax.swing.JFrame {
     public UI_cekBarang() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         
         getDatabase();
     }

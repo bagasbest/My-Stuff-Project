@@ -29,7 +29,7 @@ public class UI_MENU extends javax.swing.JFrame {
         
         initComponents();
         setLocationRelativeTo(null);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         
         
         

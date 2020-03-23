@@ -7,18 +7,28 @@ package UiAdminPembelian;
  */
 
 
-import UiAdminPengawasan.*;
+import UiAdminPenjualan.*;
+import Koneksi.koneksi;
 import Login.Login;
+import UiAdminPengawasan.UI_MENU;
 import java.awt.GraphicsEnvironment;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_OPTION;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author User
  */
 public class UI_MENU_1 extends javax.swing.JFrame {
+    String stok;
+    private DefaultTableModel model;
 
     /**
      * Creates new form UI_MENU
@@ -27,9 +37,9 @@ public class UI_MENU_1 extends javax.swing.JFrame {
         
         initComponents();
         setLocationRelativeTo(null);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         
-        
+         getDatabase();
         
     }
     static boolean maximized =true;
@@ -48,10 +58,13 @@ public class UI_MENU_1 extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         logout = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        inven = new javax.swing.JLabel();
-        editstring = new javax.swing.JLabel();
         menustring = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tb_barang = new javax.swing.JTable();
+        et_searchbar = new javax.swing.JTextField();
+        searchBar = new javax.swing.JLabel();
+        cb_stok = new javax.swing.JComboBox<>();
+        cb_jenis = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -123,43 +136,55 @@ public class UI_MENU_1 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        inven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inven.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/inventory.png"))); // NOI18N
-        inven.addMouseListener(new java.awt.event.MouseAdapter() {
+        menustring.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        menustring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menustring.setText("Selamat Datang, nama");
+
+        tb_barang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tb_barang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                invenMouseClicked(evt);
+                tb_barangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tb_barang);
+
+        et_searchbar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        et_searchbar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                et_searchbarActionPerformed(evt);
             }
         });
 
-        editstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        editstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editstring.setText("Tambah Barang");
-        editstring.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        searchBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/ic_search.png"))); // NOI18N
+        searchBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchBarMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inven, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(editstring, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(inven)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(editstring, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+        cb_stok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Keseluruhan", "Stok Ter-rendah", "Stok Tertinggi" }));
+        cb_stok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_stokActionPerformed(evt);
+            }
+        });
 
-        menustring.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        menustring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menustring.setText("MENU");
+        cb_jenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Keseluruhan", "Makanan", "Minuman", "Rokok", " " }));
+        cb_jenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_jenisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,38 +192,40 @@ public class UI_MENU_1 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(430, 430, 430)
-                .addComponent(menustring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(437, 437, 437))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(112, 112, 112))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(menustring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cb_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_jenis, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(et_searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(menustring, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(et_searchbar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cb_stok, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_jenis, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        // TODO add your handling code here:
-        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Logout? ","Konfirmasi Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(response == JOptionPane.YES_OPTION){
-            dispose();
-            Login UP = new Login();
-            dispose();
-            UP.setVisible(true);
-        }
-    }//GEN-LAST:event_logoutMouseClicked
 
     private void maximizerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizerMouseClicked
         // TODO add your handling code here:
@@ -221,9 +248,88 @@ public class UI_MENU_1 extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_closeMouseClicked
 
-    private void invenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenMouseClicked
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_invenMouseClicked
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Logout? ","Konfirmasi Logout", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+            dispose();
+            Login UP = new Login();
+            dispose();
+            UP.setVisible(true);
+        }
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void et_searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_et_searchbarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_et_searchbarActionPerformed
+
+    private void cb_stokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_stokActionPerformed
+        // TODO add your handling code here:
+        loadDataStok();
+    }//GEN-LAST:event_cb_stokActionPerformed
+
+    private void cb_jenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_jenisActionPerformed
+        // TODO add your handling code here:
+        loadDataJenis();
+    }//GEN-LAST:event_cb_jenisActionPerformed
+
+    private void searchBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBarMouseClicked
+        // TODO add your handling code here:
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        
+        koneksi kon = new koneksi();
+        kon.getData();
+        
+        try {
+            
+            Statement stat = (Statement) kon.getData().createStatement();
+            String sql = "Select * from barang where nama_barang like '%" + et_searchbar.getText() + "%'";
+            ResultSet rs = stat.executeQuery(sql);
+            
+            while (rs.next()){
+                Object[] obj = new Object[6];
+                    obj[0] = rs.getString("id_barang");
+                    obj[1] = rs.getString("nama_barang");
+                    obj[2] = rs.getString("stok");
+                    obj[3] = rs.getString("harga");
+                    obj[4] = rs.getString("harga_rata");
+                    obj[5] = rs.getString("jenis_barang");
+                                        
+                    model.addRow(obj);
+            }
+        }catch (SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+            et_searchbar.setText("");
+        }
+    }//GEN-LAST:event_searchBarMouseClicked
+
+    
+    updateBarang u = new updateBarang();
+    
+    private void tb_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_barangMouseClicked
+        // TODO add your handling code here:
+        int index = tb_barang.getSelectedRow();
+        TableModel model = tb_barang.getModel();
+        String id = model.getValueAt(index, 0).toString();
+        String nama = model.getValueAt(index, 1).toString();
+        String stok = model.getValueAt(index, 2).toString();
+        String harga = model.getValueAt(index, 3).toString();
+        String hargarata = model.getValueAt(index, 4).toString();
+        String jenis = model.getValueAt(index, 5).toString();
+        
+        u.setVisible(true);
+        u.pack();
+        u.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        u.et_id.setText(id);
+        u.et_nama.setText(nama);
+        u.et_stok.setText(stok);
+        u.et_harga.setText(harga);
+        u.et_rata.setText(hargarata);
+        u.et_jenis.setText(jenis);
+ 
+    }//GEN-LAST:event_tb_barangMouseClicked
 
     /**
      * @param args the command line arguments
@@ -251,6 +357,9 @@ public class UI_MENU_1 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UI_MENU.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -261,15 +370,243 @@ public class UI_MENU_1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_jenis;
+    private javax.swing.JComboBox<String> cb_stok;
     private javax.swing.JLabel close;
-    private javax.swing.JLabel editstring;
-    private javax.swing.JLabel inven;
+    private javax.swing.JTextField et_searchbar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel maximizer;
     private javax.swing.JLabel menustring;
+    private javax.swing.JLabel searchBar;
+    private javax.swing.JTable tb_barang;
     // End of variables declaration//GEN-END:variables
+ 
+    private void getDatabase() {
+       model = new DefaultTableModel();
+       tb_barang.setModel(model);
+       
+       model.addColumn("ID Barang");
+       model.addColumn("Nama Barang");
+       model.addColumn("stok");
+       model.addColumn("Jenis Barang");
+       model.addColumn("Harga");
+       model.addColumn("Harga rata");
+       
+       koneksi kon = new koneksi();
+       kon.getData();
+        
+        try{
+            Statement stat = (Statement) kon.getData().createStatement();
+            String sql = "SELECT * FROM barang";
+            ResultSet rs = stat.executeQuery(sql);
+            
+            while (rs.next()){
+                Object[] obj = new Object[6];
+                    obj[0] = rs.getString("id_barang");
+                    obj[1] = rs.getString("nama_barang");
+                    obj[2] = rs.getString("stok");
+                    obj[3] = rs.getString("harga");
+                    obj[4] = rs.getString("harga_rata");
+                    obj[5] = rs.getString("jenis_barang");
+                    
+                    model.addRow(obj);
+            }
+        }catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+       
+    }
+    
+    
+    
+    private void loadDataStok() {
+        koneksi kon = new koneksi();
+        kon.getData();
+        
+         switch(cb_stok.getSelectedIndex()){
+            
+             case 0:
+                 stok = "Keseluruhan";
+                 getDatabase();
+                 break;
+             case 1:
+                stok = "Stok Tertinggi";
+                
+                model.getDataVector().removeAllElements();
+                model.fireTableDataChanged();
+        
+                 
+        
+                   try {
+            
+                    Statement stat = (Statement) kon.getData().createStatement();
+                    String sql = "Select * from barang order by stok ASC";
+                    ResultSet rs = stat.executeQuery(sql);
+            
+                    while (rs.next()){
+                         Object[] obj = new Object[6];
+                            obj[0] = rs.getString("id_barang");
+                            obj[1] = rs.getString("nama_barang");
+                            obj[2] = rs.getString("stok");
+                            obj[3] = rs.getString("harga");
+                            obj[4] = rs.getString("harga_rata");
+                            obj[5] = rs.getString("jenis_barang");
+                    
+                         model.addRow(obj);
+                    }
+                    
+                   }catch (SQLException err){
+                        JOptionPane.showMessageDialog(null, err.getMessage());
+                   }
+            break;
+            
+            
+            case 2:
+                stok = "Stok Ter-Rendah";
+                
+                model.getDataVector().removeAllElements();
+                model.fireTableDataChanged();
+        
+ 
+                   try {
+            
+                    Statement stat = (Statement) kon.getData().createStatement();
+                    String sql = "Select * from barang order by stok DESC";
+                    ResultSet rs = stat.executeQuery(sql);
+            
+                    while (rs.next()){
+                         Object[] obj = new Object[6];
+                            obj[0] = rs.getString("id_barang");
+                            obj[1] = rs.getString("nama_barang");
+                            obj[2] = rs.getString("stok");
+                            obj[3] = rs.getString("harga");
+                            obj[4] = rs.getString("harga_rata");
+                            obj[5] = rs.getString("jenis_barang");
+                    
+                         model.addRow(obj);
+                    }
+                    
+                   }catch (SQLException err){
+                        JOptionPane.showMessageDialog(null, err.getMessage());
+                   }
+                   
+                break;
+   
+        }
+    }
+    
+      private void loadDataJenis(){
+        koneksi kon = new koneksi();
+        kon.getData();
+        
+         switch(cb_jenis.getSelectedIndex()){
+            
+             case 0:
+                 stok = "Keseluruhan";
+                 getDatabase();
+                 break;
+             case 1:
+                stok = "Makanan";
+                
+                model.getDataVector().removeAllElements();
+                model.fireTableDataChanged();
+        
+                 
+        
+                   try {
+            
+                    Statement stat = (Statement) kon.getData().createStatement();
+                    String sql = "Select * from barang where jenis_barang='makanan'";
+                    ResultSet rs = stat.executeQuery(sql);
+            
+                    while (rs.next()){
+                         Object[] obj = new Object[6];
+                            obj[0] = rs.getString("id_barang");
+                            obj[1] = rs.getString("nama_barang");
+                            obj[2] = rs.getString("stok");
+                            obj[3] = rs.getString("harga");
+                            obj[4] = rs.getString("harga_rata");
+                            obj[5] = rs.getString("jenis_barang");
+                    
+                         model.addRow(obj);
+                    }
+                    
+                   }catch (SQLException err){
+                        JOptionPane.showMessageDialog(null, err.getMessage());
+                   }
+            break;
+            
+            
+            case 2:
+                stok = "Minuman";
+                
+                model.getDataVector().removeAllElements();
+                model.fireTableDataChanged();
+        
+ 
+                   try {
+            
+                    Statement stat = (Statement) kon.getData().createStatement();
+                    String sql = "Select * from barang where jenis_barang='minuman'";
+                    ResultSet rs = stat.executeQuery(sql);
+            
+                    while (rs.next()){
+                         Object[] obj = new Object[6];
+                            obj[0] = rs.getString("id_barang");
+                            obj[1] = rs.getString("nama_barang");
+                            obj[2] = rs.getString("stok");
+                            obj[3] = rs.getString("harga");
+                            obj[4] = rs.getString("harga_rata");
+                            obj[5] = rs.getString("jenis_barang");
+                    
+                         model.addRow(obj);
+                    }
+                    
+                   }catch (SQLException err){
+                        JOptionPane.showMessageDialog(null, err.getMessage());
+                   }
+                   
+                break;
+                
+                case 3:
+                stok = "Rokok";
+                
+                model.getDataVector().removeAllElements();
+                model.fireTableDataChanged();
+        
+ 
+                   try {
+            
+                    Statement stat = (Statement) kon.getData().createStatement();
+                    String sql = "Select * from barang where jenis_barang='Rokok'";
+                    ResultSet rs = stat.executeQuery(sql);
+            
+                    while (rs.next()){
+                         Object[] obj = new Object[6];
+                            obj[0] = rs.getString("id_barang");
+                            obj[1] = rs.getString("nama_barang");
+                            obj[2] = rs.getString("stok");
+                            obj[3] = rs.getString("harga");
+                            obj[4] = rs.getString("harga_rata");
+                            obj[5] = rs.getString("jenis_barang");
+                    
+                         model.addRow(obj);
+                    }
+                    
+                   }catch (SQLException err){
+                        JOptionPane.showMessageDialog(null, err.getMessage());
+                   }
+                   
+                break;
+   
+        }
+    }
+      
+    
+
+
 }

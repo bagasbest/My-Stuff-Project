@@ -31,7 +31,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+       // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
 
     /**
