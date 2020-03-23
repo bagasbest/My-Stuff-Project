@@ -103,7 +103,7 @@ public class updateBarang extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(25, 25, 25));
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Update Barang");
+        jLabel8.setText("Kurangi Stok Barang");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
