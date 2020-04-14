@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class updateBarang extends javax.swing.JFrame {
 
     /**
-     * Creates new form updateBarang
+     * Creates new form tambahBarang
      */
     public updateBarang() {
         initComponents();
@@ -72,7 +72,7 @@ public class updateBarang extends javax.swing.JFrame {
         jLabel3.setText("Nama Barang");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel4.setText("Stok Berkurang ");
+        jLabel4.setText("Stok Masuk");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel5.setText("Harga");
@@ -104,7 +104,7 @@ public class updateBarang extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(25, 25, 25));
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Tambah Stok Barang");
+        jLabel8.setText("Detail barang masuk");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -200,33 +200,47 @@ public class updateBarang extends javax.swing.JFrame {
 
     private void updateBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBarangActionPerformed
         // TODO add your handling code here:
+          
         koneksi kon = new koneksi();
         kon.getData();
         
-        try {
-            Statement stat = (Statement) kon.getData().createStatement();
-            String sql = "SELECT * from barang where id_barang = '" + et_id.getText() + "'"; 
-            
-            ResultSet rs = stat.executeQuery(sql);
-            rs.next();
-            rs.last();
-            
-            if(rs.getRow() == 1){
-                sql = "UPDATE barang set stok = stok + " + et_stok.getText() + " where id_barang = '" + et_id.getText() +"'";
-                PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
-                p.execute();
-                
-         
-                
-                JOptionPane.showMessageDialog(null, "Berhasil Menambah Stok!");
-            }else{
-                 JOptionPane.showMessageDialog(null, "Gagal Update Produk!");
+        if(et_stok.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Maaf, stok barang masuk harus terisi");
+        } else { 
+            int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin? ","Konfirmasi barang masuk", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(response == JOptionPane.YES_OPTION){          
+
+                int stokBarang = Integer.parseInt(et_stok.getText());
+
+                if(stokBarang <= 0){
+                    JOptionPane.showMessageDialog(null, "Maaf, stok barang masuk tidak valid");
+                } else {
+
+                    try {
+                        Statement stat = (Statement) kon.getData().createStatement();
+                        String sql = "SELECT * from barang where id_barang = '" + et_id.getText() + "'"; 
+
+                        ResultSet rs = stat.executeQuery(sql);
+                        rs.next();
+                        rs.last();
+
+                        if(rs.getRow() == 1){
+                            sql = "UPDATE barang set stok = stok + " + et_stok.getText() + " where id_barang = '" + et_id.getText() +"'";
+                            PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+                            p.execute();
+
+
+
+                            JOptionPane.showMessageDialog(null, "Berhasil Menambah Stok!");
+                        }else{
+                             JOptionPane.showMessageDialog(null, "Gagal Update Produk!");
+                            }
+                        }catch (Exception err){
+                            JOptionPane.showMessageDialog(null, err.getMessage());
+                        }
                 }
-            }catch (Exception err){
-                JOptionPane.showMessageDialog(null, err.getMessage());
             }
-        
-        
+        }
     }//GEN-LAST:event_updateBarangActionPerformed
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
@@ -276,6 +290,12 @@ public class updateBarang extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(updateBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

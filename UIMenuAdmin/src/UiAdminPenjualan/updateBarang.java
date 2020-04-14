@@ -24,6 +24,7 @@ public class updateBarang extends javax.swing.JFrame {
     public updateBarang() {
         initComponents();
         setLocationRelativeTo(null);
+        this.et_stok1.setVisible(false);
        
     }
     
@@ -55,6 +56,7 @@ public class updateBarang extends javax.swing.JFrame {
         close = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
+        et_stok1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -71,7 +73,7 @@ public class updateBarang extends javax.swing.JFrame {
         jLabel3.setText("Nama Barang");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel4.setText("Stok Berkurang ");
+        jLabel4.setText("Stok Keluar");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel5.setText("Harga");
@@ -103,7 +105,7 @@ public class updateBarang extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(25, 25, 25));
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Kurangi Stok Barang");
+        jLabel8.setText("Detail barang keluar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,7 +155,11 @@ public class updateBarang extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(26, 26, 26)
-                        .addComponent(et_stok)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(et_stok)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(et_stok1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(18, 77, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -189,7 +195,9 @@ public class updateBarang extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(et_stok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(et_jenis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(et_stok1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(updateBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -202,29 +210,48 @@ public class updateBarang extends javax.swing.JFrame {
         koneksi kon = new koneksi();
         kon.getData();
         
-        try {
-            Statement stat = (Statement) kon.getData().createStatement();
-            String sql = "SELECT * from barang where id_barang = '" + et_id.getText() + "'"; 
-            
-            ResultSet rs = stat.executeQuery(sql);
-            rs.next();
-            rs.last();
-            
-            if(rs.getRow() == 1){
-                sql = "UPDATE barang set stok = stok - " + et_stok.getText() + " where id_barang = '" + et_id.getText() +"'";
-                PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
-                p.execute();
+        if(et_stok.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Maaf, stok barang keluar harus terisi");
+        } else { 
+       
+            int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin? ","Konfirmasi barang keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(response == JOptionPane.YES_OPTION){          
+
+                int stokBarang = Integer.parseInt(et_stok.getText());
+                int stok2 = Integer.parseInt(et_stok1.getText());
                 
-         
                 
-                JOptionPane.showMessageDialog(null, "Berhasil Mengurangi Stok!");
-            }else{
-                 JOptionPane.showMessageDialog(null, "Gagal Update Produk!");
+                if(stokBarang <= 0 || stokBarang > stok2){
+                    JOptionPane.showMessageDialog(null, "Maaf, stok barang keluar tidak valid");
+                }  else if(et_stok.getText().trim().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Maaf, stok barang tidak boleh kosong");
+                }  else {
+
+                    try {
+                        Statement stat = (Statement) kon.getData().createStatement();
+                        String sql = "SELECT * from barang where id_barang = '" + et_id.getText() + "'"; 
+
+                        ResultSet rs = stat.executeQuery(sql);
+                        rs.next();
+                        rs.last();
+
+                        if(rs.getRow() == 1){
+                            sql = "UPDATE barang set stok = stok - " + et_stok.getText() + " where id_barang = '" + et_id.getText() +"'";
+                            PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+                            p.execute();
+
+
+
+                            JOptionPane.showMessageDialog(null, "Berhasil Mengurangi Stok!");
+                        }else{
+                             JOptionPane.showMessageDialog(null, "Gagal Update Produk!");
+                            }
+                        }catch (Exception err){
+                            JOptionPane.showMessageDialog(null, err.getMessage());
+                        }
                 }
-            }catch (Exception err){
-                JOptionPane.showMessageDialog(null, err.getMessage());
             }
-        
+        }
         
     }//GEN-LAST:event_updateBarangActionPerformed
 
@@ -295,6 +322,7 @@ public class updateBarang extends javax.swing.JFrame {
     public javax.swing.JTextField et_nama;
     public javax.swing.JTextField et_rata;
     public javax.swing.JTextField et_stok;
+    public javax.swing.JTextField et_stok1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

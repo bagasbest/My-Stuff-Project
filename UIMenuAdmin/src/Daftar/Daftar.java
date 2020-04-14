@@ -27,7 +27,7 @@ public class Daftar extends javax.swing.JFrame {
     public Daftar() {
         initComponents();
         setLocationRelativeTo(null);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
     }
     
     public void loadData (){
@@ -53,23 +53,28 @@ public class Daftar extends javax.swing.JFrame {
     public void saveData() throws SQLException{
         loadData();
         
-        koneksi kon = new koneksi();
-        kon.getData();
+        if(id.trim().isEmpty() || pw.trim().isEmpty() || nama.trim().isEmpty() || rahasia.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "maaf, data tidak boleh kosong");
+        } else {
         
-        try{
-            Statement stat = (Statement) kon.getData().createStatement();
-            String sql = "Insert into akun (id_admin,password,nama_admin,role,pertanyaan_rahasia)"
-                    + "values ('"
-                    + id + "','"
-                    + pw + "','"
-                    + nama + "','"
-                    + role + "','"
-                    + rahasia + "')";            
-            PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
-            p.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Berhasil Mendaftar");
-        }catch(SQLException err){
-            JOptionPane.showMessageDialog(null, err.getMessage());
+            koneksi kon = new koneksi();
+            kon.getData();
+
+            try{
+                Statement stat = (Statement) kon.getData().createStatement();
+                String sql = "Insert into akun (id_admin,password,nama_admin,role,pertanyaan_rahasia)"
+                        + "values ('"
+                        + id + "','"
+                        + pw + "','"
+                        + nama + "','"
+                        + role + "','"
+                        + rahasia + "')";            
+                PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+                p.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Berhasil Mendaftar");
+            }catch(SQLException err){
+                JOptionPane.showMessageDialog(null, err.getMessage());
+            }
         }
     }
 
@@ -103,6 +108,10 @@ public class Daftar extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cb_role = new javax.swing.JComboBox<>();
+        lbl_nama = new javax.swing.JLabel();
+        lbl_id = new javax.swing.JLabel();
+        lbl_password = new javax.swing.JLabel();
+        lbl_rahasia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,7 +136,7 @@ public class Daftar extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(25, 25, 25));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Daftar");
+        jLabel1.setText("Daftar Admin");
 
         jLabel8.setBackground(new java.awt.Color(25, 25, 25));
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -186,16 +195,31 @@ public class Daftar extends javax.swing.JFrame {
         menustring1.setText("My Stuff");
 
         et_nama.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        et_nama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                et_namaKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Masukkan ID : ");
 
         et_id.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        et_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                et_idKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Nama Lengkap : ");
 
         et_password.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        et_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                et_passwordKeyReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Masukkan Password : ");
@@ -216,6 +240,12 @@ public class Daftar extends javax.swing.JFrame {
         btn_simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_simpanActionPerformed(evt);
+            }
+        });
+
+        et_rahasia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                et_rahasiaKeyReleased(evt);
             }
         });
 
@@ -242,24 +272,33 @@ public class Daftar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lbl_password, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(et_nama, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
-                                .addComponent(et_id)
-                                .addComponent(et_password)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cb_rahasia, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cb_role, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(et_id)
+                                .addComponent(et_password)
                                 .addComponent(et_rahasia)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cb_role, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbl_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbl_id, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbl_rahasia, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(363, 363, 363)
+                .addGap(365, 365, 365)
                 .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,31 +308,39 @@ public class Daftar extends javax.swing.JFrame {
                 .addComponent(menustring1)
                 .addGap(49, 49, 49)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(3, 3, 3)
                 .addComponent(et_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(lbl_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
                 .addComponent(et_id, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
+                .addComponent(lbl_id, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(et_password, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cb_role, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cb_rahasia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(lbl_password, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(cb_role, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(cb_rahasia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
                 .addComponent(et_rahasia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(5, 5, 5)
+                .addComponent(lbl_rahasia, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btn_simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(111, 111, 111))
         );
 
         pack();
@@ -329,13 +376,29 @@ public class Daftar extends javax.swing.JFrame {
 
     private void btn_simpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simpanActionPerformed
             // TODO add your handling code here:
-            try {
-            // TODO add your handling code here:
-            saveData();
             
-        } catch (SQLException ex) {
-            Logger.getLogger(Daftar.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            if(et_nama.getText().trim().isEmpty()){
+                lbl_nama.setText("maaf, Nama Lengkap tidak boleh kosong");
+            }
+            
+            if(et_id.getText().trim().isEmpty()){
+                lbl_id.setText("maaf, ID tidak boleh kosong");
+            }
+            
+            if(et_password.getText().trim().isEmpty()){
+                lbl_password.setText("maaf, Password tidak boleh kosong");
+            }
+            
+            if(et_rahasia.getText().trim().isEmpty()){
+                lbl_rahasia.setText("maaf, Jawaban Rahasia tidak boleh kosong");
+            }
+            
+            
+            try {     
+                saveData();        
+            } catch (SQLException ex) {
+                Logger.getLogger(Daftar.class.getName()).log(Level.SEVERE, null, ex);
+            }
            
 //            dispose();
 //            Login u = new Login();
@@ -351,6 +414,26 @@ public class Daftar extends javax.swing.JFrame {
         Login l = new Login();
         l.setVisible(true);
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void et_namaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_et_namaKeyReleased
+        // TODO add your handling code here:
+        lbl_nama.setText("");
+    }//GEN-LAST:event_et_namaKeyReleased
+
+    private void et_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_et_idKeyReleased
+        // TODO add your handling code here:
+        lbl_id.setText("");
+    }//GEN-LAST:event_et_idKeyReleased
+
+    private void et_passwordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_et_passwordKeyReleased
+        // TODO add your handling code here:
+        lbl_password.setText("");
+    }//GEN-LAST:event_et_passwordKeyReleased
+
+    private void et_rahasiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_et_rahasiaKeyReleased
+        // TODO add your handling code here:
+        lbl_rahasia.setText("");
+    }//GEN-LAST:event_et_rahasiaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -407,6 +490,10 @@ public class Daftar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lbl_id;
+    private javax.swing.JLabel lbl_nama;
+    private javax.swing.JLabel lbl_password;
+    private javax.swing.JLabel lbl_rahasia;
     private javax.swing.JLabel maximizer;
     private javax.swing.JLabel menustring1;
     // End of variables declaration//GEN-END:variables
