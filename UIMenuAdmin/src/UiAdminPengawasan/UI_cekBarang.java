@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author user
@@ -159,6 +160,11 @@ public class UI_cekBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_barangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_barang);
 
         et_searchbar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -237,7 +243,8 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     .addComponent(searchBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     .addComponent(et_searchbar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -318,6 +325,31 @@ public class UI_cekBarang extends javax.swing.JFrame {
             et_searchbar.setText("");
         }
     }//GEN-LAST:event_searchBarMouseClicked
+
+    updateBarang u = new updateBarang();
+    
+    private void tb_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_barangMouseClicked
+        // TODO add your handling code here:
+        int index = tb_barang.getSelectedRow();
+        TableModel model = tb_barang.getModel();
+        String id = model.getValueAt(index, 0).toString();
+        String nama = model.getValueAt(index, 1).toString();
+        String stok = model.getValueAt(index, 2).toString();
+        String harga = model.getValueAt(index, 3).toString();
+        String hargarata = model.getValueAt(index, 4).toString();
+        String jenis = model.getValueAt(index, 5).toString();
+        
+        u.setVisible(true);
+        u.pack();
+        u.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        u.et_id.setText(id);
+        u.et_nama.setText(nama);
+        u.et_stok.setText(stok);
+        u.et_harga.setText(harga);
+        u.et_rata.setText(hargarata);
+        u.et_jenis.setText(jenis);
+    }//GEN-LAST:event_tb_barangMouseClicked
 
     /**
      * @param args the command line arguments
