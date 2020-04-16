@@ -412,9 +412,9 @@ public class UI_MENU_2 extends javax.swing.JFrame {
        model.addColumn("ID Barang");
        model.addColumn("Nama Barang");
        model.addColumn("stok");
-       model.addColumn("Jenis Barang");
        model.addColumn("Harga");
        model.addColumn("Harga rata");
+       model.addColumn("Jenis Barang");
        
        koneksi kon = new koneksi();
        kon.getData();

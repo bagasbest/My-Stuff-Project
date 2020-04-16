@@ -365,21 +365,21 @@ public class Login extends javax.swing.JFrame {
                 
                 UI_MENU u = new UI_MENU();
                     u.setVisible(true);
-                    et_id.setText("");
+                    //et_id.setText("");
                     et_password.setText("");
             }else if ("2".equals(rs.getString("role"))){
                 dispose();
                 
                 UI_MENU_1 u = new UI_MENU_1();
                     u.setVisible(true);
-                    et_id.setText("");
+                    //et_id.setText("");
                     et_password.setText("");
             }else if("3".equals(rs.getString("role"))){
                 dispose();
                 
                 UI_MENU_2 u = new UI_MENU_2();
                     u.setVisible(true);
-                    et_id.setText("");
+                    //et_id.setText("");
                     et_password.setText("");
             }
             }else if(et_id.getText() == "" || et_password.getText() == ""){
@@ -476,7 +476,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btn_daftar;
     private javax.swing.JButton btn_login;
     private javax.swing.JLabel close;
-    private javax.swing.JTextField et_id;
+    public javax.swing.JTextField et_id;
     private javax.swing.JPasswordField et_password;
     private javax.swing.JLabel icon1;
     private javax.swing.JLabel icon2;

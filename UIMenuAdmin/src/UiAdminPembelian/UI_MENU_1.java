@@ -69,6 +69,7 @@ public class UI_MENU_1 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        nama_admin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -142,7 +143,7 @@ public class UI_MENU_1 extends javax.swing.JFrame {
 
         menustring.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         menustring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menustring.setText("Selamat Datang, nama");
+        menustring.setText("Selamat Datang, ");
 
         tb_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +207,10 @@ public class UI_MENU_1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel5.setText("Cek berdasarkan Jumlah Stok");
 
+        nama_admin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        nama_admin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nama_admin.setText("nama");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,7 +219,6 @@ public class UI_MENU_1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menustring, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -236,14 +240,22 @@ public class UI_MENU_1 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(et_searchbar, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(309, 309, 309)
+                .addComponent(menustring, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nama_admin, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(menustring, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(menustring, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nama_admin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
@@ -435,10 +447,14 @@ public class UI_MENU_1 extends javax.swing.JFrame {
     private javax.swing.JLabel logout;
     private javax.swing.JLabel maximizer;
     private javax.swing.JLabel menustring;
+    private javax.swing.JLabel nama_admin;
     private javax.swing.JLabel searchBar;
     private javax.swing.JTable tb_barang;
     // End of variables declaration//GEN-END:variables
  
+    Login l = new Login();
+   //UI_MENU_1 ui = new UI_MENU_1();
+    
     private void getDatabase() {
        model = new DefaultTableModel();
        tb_barang.setModel(model);
@@ -446,9 +462,9 @@ public class UI_MENU_1 extends javax.swing.JFrame {
        model.addColumn("ID Barang");
        model.addColumn("Nama Barang");
        model.addColumn("stok");
-       model.addColumn("Jenis Barang");
        model.addColumn("Harga");
        model.addColumn("Harga rata");
+       model.addColumn("Jenis Barang");
        
        koneksi kon = new koneksi();
        kon.getData();
@@ -456,7 +472,16 @@ public class UI_MENU_1 extends javax.swing.JFrame {
         try{
             Statement stat = (Statement) kon.getData().createStatement();
             String sql = "SELECT * FROM barang";
+           // String nama = "SELECT nama_admin FROM akun WHERE id_admin ='" + l.et_id.getText()  + "'  ";
+            //String nama = l.et_id.getText();
+            
+            
             ResultSet rs = stat.executeQuery(sql);
+            //rss =  stat.executeQuery(nama);
+            
+            
+               // nama_admin.setText(rss.getString("nama_admin"));
+            
             
             while (rs.next()){
                 Object[] obj = new Object[6];

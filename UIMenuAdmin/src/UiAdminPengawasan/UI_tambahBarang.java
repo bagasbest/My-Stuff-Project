@@ -343,7 +343,7 @@ public class UI_tambahBarang extends javax.swing.JFrame {
         u.et_id.setText(id);
         u.et_nama.setText(nama);
         u.et_stok.setText(stok);
-        u.et_stok1.setText(stok);
+        
         u.et_harga.setText(harga);
         u.et_rata.setText(hargarata);
         u.et_jenis.setText(jenis);

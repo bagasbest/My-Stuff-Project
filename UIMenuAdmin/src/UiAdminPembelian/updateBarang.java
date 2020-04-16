@@ -204,8 +204,8 @@ public class updateBarang extends javax.swing.JFrame {
         koneksi kon = new koneksi();
         kon.getData();
         
-        if(et_stok.getText().trim().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Maaf, stok barang masuk harus terisi");
+        if(et_stok.getText().trim().isEmpty() || et_harga.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Maaf, stok barang masuk, harga harus terisi");
         } else { 
             int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin? ","Konfirmasi barang masuk", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(response == JOptionPane.YES_OPTION){          
@@ -225,7 +225,7 @@ public class updateBarang extends javax.swing.JFrame {
                         rs.last();
 
                         if(rs.getRow() == 1){
-                            sql = "UPDATE barang set stok = stok + " + et_stok.getText() + " where id_barang = '" + et_id.getText() +"'";
+                            sql = "UPDATE barang set stok = stok + " + et_stok.getText() + ", harga= " + et_harga.getText()  + ", harga_rata = (harga_rata + " + et_harga.getText() + ") / 2 where id_barang = '" + et_id.getText() +"'";
                             PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
                             p.execute();
 
@@ -254,7 +254,7 @@ public class updateBarang extends javax.swing.JFrame {
         // TODO add your handling code here:
         et_id.setEditable(false);
         et_nama.setEditable(false);
-        et_harga.setEditable(false);
+       // et_harga.setEditable(false);
         et_rata.setEditable(false);
         et_jenis.setEditable(false);
         
