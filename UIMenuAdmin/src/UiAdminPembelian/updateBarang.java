@@ -67,10 +67,10 @@ public class updateBarang extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel2.setText("ID Barang *");
+        jLabel2.setText("ID Barang ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel3.setText("Nama Barang *");
+        jLabel3.setText("Nama Barang ");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel4.setText("Stok Masuk *");
@@ -79,10 +79,10 @@ public class updateBarang extends javax.swing.JFrame {
         jLabel5.setText("Harga *");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel6.setText("Harga-Rata *");
+        jLabel6.setText("Harga-Rata ");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel7.setText("Jenis Barang *");
+        jLabel7.setText("Jenis Barang ");
 
         updateBarang.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         updateBarang.setText("Simpan Perubahan");
@@ -161,7 +161,7 @@ public class updateBarang extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(et_stok, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                 .addComponent(et_nama)))
-                        .addGap(18, 53, Short.MAX_VALUE)
+                        .addGap(18, 69, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel5)

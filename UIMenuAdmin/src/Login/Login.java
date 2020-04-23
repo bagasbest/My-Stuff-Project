@@ -11,7 +11,10 @@ import UiAdminPengawasan.UI_MENU;
 import UiAdminPengawasan.UI_MENU;
 import UiAdminPembelian.UI_MENU_1;
 import UiAdminPenjualan.UI_MENU_2;
+import java.awt.Cursor;
 import java.awt.GraphicsEnvironment;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
@@ -22,7 +25,7 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class Login extends javax.swing.JFrame {
-
+    
     private boolean maximized;
 
     /**
@@ -198,6 +201,11 @@ public class Login extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Klik disini");
+        jLabel8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel8MouseMoved(evt);
+            }
+        });
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -205,6 +213,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/baseline_visibility_off_black_18dp.png"))); // NOI18N
+        icon2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                icon2MouseMoved(evt);
+            }
+        });
         icon2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 icon2MousePressed(evt);
@@ -212,6 +225,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/baseline_visibility_black_18dp.png"))); // NOI18N
+        icon1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                icon1MouseMoved(evt);
+            }
+        });
         icon1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 icon1MousePressed(evt);
@@ -410,6 +428,11 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
+        dispose ();
+        resetPassword r = new resetPassword();
+        r.setVisible(true);
+        dispose ();
+        
        
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -436,6 +459,21 @@ public class Login extends javax.swing.JFrame {
         icon2.setVisible(false);
         et_password.setEchoChar('*');
     }//GEN-LAST:event_icon2MousePressed
+
+    private void jLabel8MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseMoved
+        // TODO add your handling code here:
+        jLabel8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel8MouseMoved
+
+    private void icon1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon1MouseMoved
+        // TODO add your handling code here:
+        icon1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_icon1MouseMoved
+
+    private void icon2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon2MouseMoved
+        // TODO add your handling code here:
+        icon2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_icon2MouseMoved
 
     /**
      * @param args the command line arguments

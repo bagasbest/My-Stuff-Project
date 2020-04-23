@@ -354,6 +354,7 @@
         <Property name="text" type="java.lang.String" value="Klik disini"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jLabel8MouseMoved"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel8MouseClicked"/>
       </Events>
     </Component>
@@ -368,6 +369,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="icon2MouseMoved"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon2MousePressed"/>
       </Events>
     </Component>
@@ -378,6 +380,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="icon1MouseMoved"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="icon1MousePressed"/>
       </Events>
     </Component>

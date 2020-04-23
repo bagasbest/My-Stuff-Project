@@ -54,7 +54,7 @@
                               <Component id="et_nama" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" pref="53" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" pref="69" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ID Barang *"/>
+        <Property name="text" type="java.lang.String" value="ID Barang "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -125,7 +125,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nama Barang *"/>
+        <Property name="text" type="java.lang.String" value="Nama Barang "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="et_nama">
@@ -154,7 +154,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Harga-Rata *"/>
+        <Property name="text" type="java.lang.String" value="Harga-Rata "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -162,7 +162,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="13" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Jenis Barang *"/>
+        <Property name="text" type="java.lang.String" value="Jenis Barang "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="et_stok">

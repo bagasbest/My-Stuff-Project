@@ -5,14 +5,13 @@
  */
 package Login;
 
+import Koneksi.koneksi;
+
 import java.awt.GraphicsEnvironment;
-import java.util.Properties;
-import java.util.Random;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,15 +19,25 @@ import javax.swing.JOptionPane;
  *
  * @author user
  */
-public class resetPassword extends javax.swing.JFrame {
+public class newPassword extends javax.swing.JFrame {
+    Connection con = null;
+    ResultSet  rs = null;
+    PreparedStatement pst = null;
+    public String user;
+    
 
     private boolean maximized;
-    int randomCode;
 
     /**
-     * Creates new form resetPassword
+     * Creates new form newPassword
      */
-    public resetPassword() {
+    public newPassword() {
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public newPassword(String username) {
+        this.user=username;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -51,10 +60,11 @@ public class resetPassword extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        et_code = new javax.swing.JTextField();
-        et_email = new javax.swing.JTextField();
-        btn_kirim = new javax.swing.JButton();
-        btn_verifikasi = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        et_pw = new javax.swing.JTextField();
+        et_ver = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -79,7 +89,7 @@ public class resetPassword extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(25, 25, 25));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Lupa Password");
+        jLabel1.setText("Password baru");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/my stuff.png"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -104,7 +114,7 @@ public class resetPassword extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(maximizer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,23 +144,26 @@ public class resetPassword extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Email Admin");
+        jLabel2.setText("Kembali ke halaman");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Verifikasi Kode");
-
-        btn_kirim.setText("Kirim kode verifikasi");
-        btn_kirim.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_kirimActionPerformed(evt);
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel3.setText("Sebelumnya");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
             }
         });
 
-        btn_verifikasi.setText("Verifikasi kode");
-        btn_verifikasi.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Password baru");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Verifikasi password");
+
+        jButton1.setText("Perbarui password");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_verifikasiActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -159,43 +172,47 @@ public class resetPassword extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(et_code, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(et_email, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
+                    .addComponent(et_pw, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(et_ver, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_kirim, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(72, 72, 72))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_verifikasi)
-                        .addGap(160, 160, 160))))
+                        .addComponent(jButton1)
+                        .addGap(109, 109, 109))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(et_pw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(et_ver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(et_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_kirim)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(et_code, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn_verifikasi)
-                .addGap(0, 119, Short.MAX_VALUE))
+                    .addComponent(jLabel3))
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -212,9 +229,9 @@ public class resetPassword extends javax.swing.JFrame {
         if (maximized){
 
             //fullscreen - taskbar
-            resetPassword.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            newPassword.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            resetPassword.this.setMaximizedBounds(env.getMaximumWindowBounds());
+            newPassword.this.setMaximizedBounds(env.getMaximumWindowBounds());
             maximized = false;
         }
         else{
@@ -230,70 +247,32 @@ public class resetPassword extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void btn_verifikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verifikasiActionPerformed
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        if(Integer.valueOf(et_code.getText()) == randomCode) {
-            dispose();
-            newPassword np = new newPassword(et_email.getText());
-            np.setVisible(true);
-            this.setVisible(false);
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Reset Successfully");
-        }
-    }//GEN-LAST:event_btn_verifikasiActionPerformed
+        dispose ();
+        resetPassword r = new resetPassword();
+        r.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void btn_kirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kirimActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        try {
-        Random rand = new Random();
-        randomCode = rand.nextInt(999999);
-        String host = "smtp.gmail.com";
-        String user = "mystuffservice@gmail.com";
-        String pass = "twobutoddsolid";
-        String to = et_email.getText();
-        String subject = "Reseting Password";
-        String message = "Your reset code is "+randomCode;
-        
-        boolean sessionDebug = false;
-        Properties pros = System.getProperties();
-        pros.put("mail.smtp.starttls.enable", "true");
-        pros.put("mail.smtp.host", "host" );
-        pros.put("mail.smtp.port", "587");
-        pros.put("mail.smtp.auth", "true");
-        pros.put("mail.smtp.starttls.required", "true");
-        
-        java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-        Session mailSession = Session.getDefaultInstance(pros, null);
-        mailSession.setDebug(sessionDebug);
-        
-        Message msg = new MimeMessage(mailSession);
-        msg.setFrom(new InternetAddress(user));
-        InternetAddress [] address = {new InternetAddress(to)};
-        msg.setRecipients(Message.RecipientType.TO, address);
-        msg.setSubject(subject);
-        msg.setText(message);
-        
-        Transport transport = mailSession.getTransport("smtp");
-        transport.connect(host, user, pass);
-        transport.sendMessage(msg, msg.getAllRecipients());
-        transport.close();
-        JOptionPane.showMessageDialog(null, "Code has been sent to your email");
-        
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e);
+        if(et_pw.getText().equals(et_ver.getText())) {
+            try {
+                String updateQuery = "UPDATE akun SET password=? WHERE id_admin=?";
+                con = DriverManager.getConnection("jdbc:mysql://localhost/mystuff", "root", "");
+                pst = con.prepareStatement(updateQuery);
+                pst.setString(1, et_ver.getText());
+                pst.setString(2, user);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Password anda berhasil diperbarui!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Password tidak sama");
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btn_kirimActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,33 +291,34 @@ public class resetPassword extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(resetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(newPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(resetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(newPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(resetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(newPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(resetPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(newPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new resetPassword().setVisible(true);
+                new newPassword().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_kirim;
-    private javax.swing.JButton btn_verifikasi;
     private javax.swing.JLabel close;
-    private javax.swing.JTextField et_code;
-    private javax.swing.JTextField et_email;
+    private javax.swing.JTextField et_pw;
+    private javax.swing.JTextField et_ver;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
