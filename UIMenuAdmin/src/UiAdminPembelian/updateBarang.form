@@ -47,12 +47,10 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="et_id" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="et_stok" pref="150" max="32767" attributes="0"/>
-                              <Component id="et_nama" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="et_stok" pref="150" max="32767" attributes="0"/>
+                          <Component id="et_nama" max="32767" attributes="0"/>
+                          <Component id="et_id" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" pref="69" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">

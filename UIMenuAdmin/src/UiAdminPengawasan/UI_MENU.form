@@ -42,7 +42,7 @@
               <Component id="menustring" min="-2" pref="47" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="168" max="32767" attributes="0"/>
+              <EmptySpace pref="161" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -170,25 +170,24 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="inven" min="-2" pref="313" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                  <Component id="edit" pref="354" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="386" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="editstring" min="-2" pref="223" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="inven" pref="200" max="32767" attributes="0"/>
+                      <Component id="editstring" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="edit" pref="209" max="32767" attributes="0"/>
+                      <Component id="invenstring" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="426" max="-2" attributes="0"/>
-                      <Component id="invenstring" min="-2" pref="321" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cash" pref="135" max="32767" attributes="0"/>
-                          <Component id="cashstring" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="916" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="cashstring" pref="228" max="32767" attributes="0"/>
+                          <Component id="cash" pref="228" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -204,7 +203,10 @@
                       <Component id="edit" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="12" max="32767" attributes="0"/>
-                  <Component id="editstring" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="editstring" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="invenstring" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -212,10 +214,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="cash" pref="135" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="invenstring" alignment="3" max="32767" attributes="0"/>
-                          <Component id="cashstring" alignment="3" pref="23" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="cashstring" pref="23" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -230,6 +229,9 @@
               <Image iconType="3" name="/Drawable/product.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="inven">
           <Properties>
