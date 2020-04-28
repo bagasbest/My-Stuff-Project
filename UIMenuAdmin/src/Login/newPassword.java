@@ -53,7 +53,6 @@ public class newPassword extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         close = new javax.swing.JLabel();
-        maximizer = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -76,13 +75,6 @@ public class newPassword extends javax.swing.JFrame {
         close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 closeMouseClicked(evt);
-            }
-        });
-
-        maximizer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/times-square (1).png"))); // NOI18N
-        maximizer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                maximizerMouseClicked(evt);
             }
         });
 
@@ -115,13 +107,11 @@ public class newPassword extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(maximizer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addGap(22, 22, 22))))
         );
@@ -131,7 +121,6 @@ public class newPassword extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(maximizer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -223,23 +212,6 @@ public class newPassword extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_closeMouseClicked
 
-    private void maximizerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizerMouseClicked
-
-        // TODO add your handling code here:
-        if (maximized){
-
-            //fullscreen - taskbar
-            newPassword.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            newPassword.this.setMaximizedBounds(env.getMaximumWindowBounds());
-            maximized = false;
-        }
-        else{
-            setExtendedState(JFrame.NORMAL);
-            maximized = true;
-        }
-    }//GEN-LAST:event_maximizerMouseClicked
-
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         dispose();
@@ -323,6 +295,5 @@ public class newPassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel maximizer;
     // End of variables declaration//GEN-END:variables
 }

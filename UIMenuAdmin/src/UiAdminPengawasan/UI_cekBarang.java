@@ -51,7 +51,6 @@ public class UI_cekBarang extends javax.swing.JFrame {
         menustring = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         close = new javax.swing.JLabel();
-        maximizer = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         back_menu = new javax.swing.JLabel();
@@ -83,13 +82,6 @@ public class UI_cekBarang extends javax.swing.JFrame {
             }
         });
 
-        maximizer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/times-square (1).png"))); // NOI18N
-        maximizer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                maximizerMouseClicked(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cek Barang");
@@ -117,8 +109,6 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(maximizer, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,7 +122,6 @@ public class UI_cekBarang extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(close, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(maximizer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -254,22 +243,6 @@ public class UI_cekBarang extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_closeMouseClicked
-
-    private void maximizerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizerMouseClicked
-        // TODO add your handling code here:
-        if (maximized){
-
-            //fullscreen - taskbar
-            UI_cekBarang.this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            UI_cekBarang.this.setMaximizedBounds(env.getMaximumWindowBounds());
-            maximized = false;
-        }
-        else{
-            setExtendedState(JFrame.NORMAL);
-            maximized = true;
-        }
-    }//GEN-LAST:event_maximizerMouseClicked
 
     private void et_searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_et_searchbarActionPerformed
         // TODO add your handling code here:
@@ -404,7 +377,6 @@ public class UI_cekBarang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel maximizer;
     private javax.swing.JLabel menustring;
     private javax.swing.JLabel menustring1;
     private javax.swing.JLabel searchBar;

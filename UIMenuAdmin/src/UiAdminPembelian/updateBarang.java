@@ -66,6 +66,8 @@ public class updateBarang extends javax.swing.JFrame {
             }
         });
 
+        et_id.setBackground(new java.awt.Color(204, 204, 204));
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("ID Barang ");
 
