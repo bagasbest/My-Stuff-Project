@@ -123,6 +123,7 @@ public class UI_cekBarang extends javax.swing.JFrame {
         });
 
         cb_jenis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Keseluruhan", "Makanan", "Minuman", "Rokok", " " }));
+        cb_jenis.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cb_jenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_jenisActionPerformed(evt);
