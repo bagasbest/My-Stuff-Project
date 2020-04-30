@@ -53,7 +53,9 @@ public class tambahBarang extends javax.swing.JFrame {
         
     }
     
-    public void saveData() throws SQLException{
+    
+    
+    public void saveData(){
         loadData();       
 
         koneksi kon = new koneksi();
@@ -76,6 +78,31 @@ public class tambahBarang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, err.getMessage());
         }
     }
+    
+    public void saveDataBarangMasuk(){
+        loadData();       
+
+        koneksi kon = new koneksi();
+        kon.getData();
+      
+        try{
+            Statement stat = (Statement) kon.getData().createStatement();
+            String sql = "INSERT INTO transaksi_pembelian (id_barang,nama_barang,jumlah_stok,harga,jenis_barang)"
+                    + "VALUES ('"
+                    + idBarang + "','"
+                    + namaBarang + "','"
+                    + stok + "','"
+                    + harga + "','"
+                    + jenisBarang + "')";
+          
+            PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+            p.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Transaksi berhasil!");
+        }catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
+    }
+    
     
     
 
@@ -290,15 +317,15 @@ public class tambahBarang extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Maaf, stok barang baru tidak valid");
                 }  else {
 
-                    try {
-                        // TODO add your handling code here:
-                        saveData();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(tambahBarang.class.getName()).log(Level.SEVERE, null, ex);
-                    }      
+                    // TODO add your handling code here:
+                    saveData();
+                    saveDataBarangMasuk();
+                    
                 }
             }
         }
+        
+        
     }//GEN-LAST:event_updateBarangActionPerformed
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked

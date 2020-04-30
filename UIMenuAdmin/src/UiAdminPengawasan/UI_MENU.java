@@ -8,6 +8,8 @@ package UiAdminPengawasan;
 
 
 import Login.Login;
+import Transaksi.transaksi_pembelian;
+import Transaksi.transaksi_penjualan;
 import java.awt.GraphicsEnvironment;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -55,7 +57,7 @@ public class UI_MENU extends javax.swing.JFrame {
         edit = new javax.swing.JLabel();
         invenstring = new javax.swing.JLabel();
         menustring = new javax.swing.JLabel();
-        editstring = new javax.swing.JLabel();
+        transaksi_pembelian = new javax.swing.JLabel();
         inven = new javax.swing.JLabel();
         cash = new javax.swing.JLabel();
         cashstring = new javax.swing.JLabel();
@@ -115,10 +117,15 @@ public class UI_MENU extends javax.swing.JFrame {
         menustring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menustring.setText("MENU");
 
-        editstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        editstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        editstring.setText("Tambah Barang");
-        editstring.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        transaksi_pembelian.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        transaksi_pembelian.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        transaksi_pembelian.setText("Transaksi pembelian");
+        transaksi_pembelian.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        transaksi_pembelian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                transaksi_pembelianKeyPressed(evt);
+            }
+        });
 
         inven.setBackground(new java.awt.Color(255, 255, 255));
         inven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -131,6 +138,11 @@ public class UI_MENU extends javax.swing.JFrame {
 
         cash.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/cashier.png"))); // NOI18N
+        cash.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cashMouseClicked(evt);
+            }
+        });
 
         cashstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cashstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -144,7 +156,7 @@ public class UI_MENU extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(179, 179, 179)
-                        .addComponent(editstring, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(transaksi_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(inven, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -177,7 +189,7 @@ public class UI_MENU extends javax.swing.JFrame {
                     .addComponent(edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editstring, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transaksi_pembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cashstring, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(invenstring, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(201, 201, 201))
@@ -286,15 +298,27 @@ public class UI_MENU extends javax.swing.JFrame {
     private void invenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenMouseClicked
         // TODO add your handling code here:
         dispose();
-        UI_cekBarang UP = null;
-        try {
-            UP = new UI_cekBarang();
-        } catch (SQLException ex) {
-            Logger.getLogger(UI_MENU.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        transaksi_pembelian tp = new transaksi_pembelian();
+        tp.setVisible(true);
         dispose();
-        UP.setVisible(true);
+        
     }//GEN-LAST:event_invenMouseClicked
+
+    private void transaksi_pembelianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_transaksi_pembelianKeyPressed
+        // TODO add your handling code here:
+        dispose();
+        transaksi_pembelian tp = new transaksi_pembelian();
+        tp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_transaksi_pembelianKeyPressed
+
+    private void cashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cashMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        transaksi_penjualan tpj = new transaksi_penjualan();
+        tpj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cashMouseClicked
 
     /**
      * @param args the command line arguments
@@ -351,7 +375,6 @@ public class UI_MENU extends javax.swing.JFrame {
     private javax.swing.JLabel cashstring;
     private javax.swing.JLabel close;
     private javax.swing.JLabel edit;
-    private javax.swing.JLabel editstring;
     private javax.swing.JLabel inven;
     private javax.swing.JLabel invenstring;
     private javax.swing.JLabel jLabel1;
@@ -362,5 +385,6 @@ public class UI_MENU extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel menustring;
+    private javax.swing.JLabel transaksi_pembelian;
     // End of variables declaration//GEN-END:variables
 }
