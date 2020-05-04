@@ -31,11 +31,13 @@ public class UI_MENU extends javax.swing.JFrame {
         
         initComponents();
         setLocationRelativeTo(null);
-        //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        
-        
-        
+        //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);  
     }
+    
+    public void username (String user) {
+        tv_username.setText("Selamat datang " + user + ", selamat bekerja");
+    }
+    
     static boolean maximized =true;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +64,7 @@ public class UI_MENU extends javax.swing.JFrame {
         cash = new javax.swing.JLabel();
         cashstring = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        tv_username = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -147,7 +150,7 @@ public class UI_MENU extends javax.swing.JFrame {
 
         cashstring.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cashstring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cashstring.setText("Penjualan");
+        cashstring.setText("Transaksi penjualan");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -203,6 +206,10 @@ public class UI_MENU extends javax.swing.JFrame {
             }
         });
 
+        tv_username.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
+        tv_username.setForeground(new java.awt.Color(255, 255, 255));
+        tv_username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -219,6 +226,8 @@ public class UI_MENU extends javax.swing.JFrame {
                         .addComponent(close, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(tv_username, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
@@ -234,7 +243,7 @@ public class UI_MENU extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +252,8 @@ public class UI_MENU extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logout)
                             .addComponent(jLabel2))
-                        .addGap(8, 8, 8)))
+                        .addGap(8, 8, 8))
+                    .addComponent(tv_username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -403,5 +413,6 @@ public class UI_MENU extends javax.swing.JFrame {
     private javax.swing.JLabel logout;
     private javax.swing.JLabel menustring;
     private javax.swing.JLabel transaksi_pembelian;
+    public javax.swing.JLabel tv_username;
     // End of variables declaration//GEN-END:variables
 }

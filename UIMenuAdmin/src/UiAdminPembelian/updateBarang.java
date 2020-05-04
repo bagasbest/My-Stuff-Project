@@ -10,6 +10,7 @@ import UiAdminPenjualan.UI_MENU_2;
 import Koneksi.koneksi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class updateBarang extends javax.swing.JFrame {
+    String idBarang, namaBarang, jenisBarang;
+    int stok, harga;
 
     /**
      * Creates new form tambahBarang
@@ -26,6 +29,38 @@ public class updateBarang extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
        
+    }
+    
+    public void loadData () {
+        idBarang  = et_id.getText();
+        namaBarang = et_nama.getText();
+        jenisBarang = et_jenis.getText();
+        stok = Integer.parseInt(et_stok.getText());
+        harga = Integer.parseInt(et_harga.getText());   
+    }
+    
+    public void saveDataBarangMasuk(){
+        loadData();       
+
+        koneksi kon = new koneksi();
+        kon.getData();
+      
+        try{
+            Statement stat = (Statement) kon.getData().createStatement();
+            String sql = "INSERT INTO transaksi_pembelian (id_barang,nama_barang,jumlah_stok,harga,jenis_barang)"
+                    + "VALUES ('"
+                    + idBarang + "','"
+                    + namaBarang + "','"
+                    + stok + "','"
+                    + harga + "','"
+                    + jenisBarang + "')";
+          
+            PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+            p.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Transaksi berhasil!");
+        }catch(SQLException err){
+            JOptionPane.showMessageDialog(null, err.getMessage());
+        }
     }
     
     
@@ -279,6 +314,7 @@ public class updateBarang extends javax.swing.JFrame {
 
 
                             JOptionPane.showMessageDialog(null, "Berhasil Menambah Stok!");
+                            saveDataBarangMasuk();
                         }else{
                              JOptionPane.showMessageDialog(null, "Gagal Update Produk!");
                             }
@@ -293,8 +329,7 @@ public class updateBarang extends javax.swing.JFrame {
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
         dispose();
-        UI_MENU_1 u = new UI_MENU_1();
-        u.setVisible(true);
+        
     }//GEN-LAST:event_closeMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

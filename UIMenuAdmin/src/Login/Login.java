@@ -373,6 +373,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
+        
 
         if(et_id.getText().trim().isEmpty() && et_password.getText().trim().isEmpty()){
             lbl_id.setText("maaf, ID tidak boleh kosong");
@@ -391,16 +392,25 @@ public class Login extends javax.swing.JFrame {
 
         try{
             Statement stat = (Statement)connection.getData().createStatement();
-            String sql = "SELECT id_admin,password,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";
-
+            
+            String user = "";
+            String sql_name = "SELECT id_admin,password,role,nama_admin FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";
+            ResultSet rs_name = stat.executeQuery(sql_name);
+            if(rs_name.next()){
+                user = rs_name.getString("nama_admin");
+            }
+            
+            String sql = "SELECT id_admin,password,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";            
             ResultSet rs = stat.executeQuery(sql);
-            if(rs.next()){
-
+            if(rs.next()){               
+                
                 if("1".equals(rs.getString("role"))){
                     dispose();
 
                     UI_MENU u = new UI_MENU();
                     u.setVisible(true);
+                    u.username(user);
+       
                     //et_id.setText("");
                     et_password.setText("");
                 }else if ("2".equals(rs.getString("role"))){
@@ -408,6 +418,7 @@ public class Login extends javax.swing.JFrame {
 
                     UI_MENU_1 u = new UI_MENU_1();
                     u.setVisible(true);
+                    u.username(user);
                     //et_id.setText("");
                     et_password.setText("");
                 }else if("3".equals(rs.getString("role"))){
@@ -415,6 +426,7 @@ public class Login extends javax.swing.JFrame {
 
                     UI_MENU_2 u = new UI_MENU_2();
                     u.setVisible(true);
+                    u.username(user);
                     //et_id.setText("");
                     et_password.setText("");
                 }
@@ -429,6 +441,8 @@ public class Login extends javax.swing.JFrame {
         catch(Exception err){
             JOptionPane.showMessageDialog(null, err.getMessage());
         }
+    
+        
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void btn_daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarActionPerformed

@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +30,6 @@ public class updateBarang extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-       
     }
     
     
@@ -253,16 +253,8 @@ public class updateBarang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
-        // TODO add your handling code here:
         dispose();
-        UI_cekBarang u = null;
-        try {
-            u = new UI_cekBarang();
-        } catch (SQLException ex) {
-            Logger.getLogger(updateBarang.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        u.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_closeMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

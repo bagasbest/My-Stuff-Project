@@ -343,8 +343,6 @@ public class updateBarang extends javax.swing.JFrame {
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
         dispose();
-        UI_MENU_2 u = new UI_MENU_2();
-        u.setVisible(true);
     }//GEN-LAST:event_closeMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
