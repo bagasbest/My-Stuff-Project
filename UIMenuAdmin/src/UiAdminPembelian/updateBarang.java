@@ -307,7 +307,7 @@ public class updateBarang extends javax.swing.JFrame {
                         rs.last();
 
                         if(rs.getRow() == 1){
-                            sql = "UPDATE barang set stok = stok + " + et_stok.getText() + ", harga= " + et_harga.getText()  + ", harga_rata = (harga_rata + " + et_harga.getText() + ") / 2 where id_barang = '" + et_id.getText() +"'";
+                            sql = "UPDATE barang set stok = stok + " + et_stok.getText() + ", harga_pembelian= " + et_harga.getText()  + ", harga_rata_pembelian = (harga_rata_pembelian + " + et_harga.getText() + ") / 2 where id_barang = '" + et_id.getText() +"'";
                             PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
                             p.execute();
 

@@ -13,6 +13,7 @@ import UiAdminPembelian.UI_MENU_1;
 import UiAdminPenjualan.UI_MENU_2;
 import java.awt.Cursor;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -151,6 +152,9 @@ public class Login extends javax.swing.JFrame {
 
         et_id.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         et_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                et_idKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 et_idKeyReleased(evt);
             }
@@ -166,6 +170,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
         et_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                et_passwordKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 et_passwordKeyReleased(evt);
             }
@@ -471,6 +478,83 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(this.ICONIFIED);
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void et_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_et_passwordKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
+                if(et_id.getText().trim().isEmpty() && et_password.getText().trim().isEmpty()){
+                lbl_id.setText("maaf, ID tidak boleh kosong");
+                lbl_password.setText("maaf, Password tidak boleh kosong");
+            }
+
+            else if(et_id.getText().trim().isEmpty()){
+                lbl_id.setText("maaf, ID tidak boleh kosong");
+            }
+
+            else if(et_password.getText().trim().isEmpty()){
+                lbl_password.setText("maaf, Password tidak boleh kosong");
+            }
+            koneksi connection = new koneksi();
+            connection.getData();
+
+            try{
+                Statement stat = (Statement)connection.getData().createStatement();
+
+                String user = "";
+                String sql_name = "SELECT id_admin,password,role,nama_admin FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";
+                ResultSet rs_name = stat.executeQuery(sql_name);
+                if(rs_name.next()){
+                    user = rs_name.getString("nama_admin");
+                }
+
+                String sql = "SELECT id_admin,password,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";            
+                ResultSet rs = stat.executeQuery(sql);
+                if(rs.next()){               
+
+                    if("1".equals(rs.getString("role"))){
+                        dispose();
+
+                        UI_MENU u = new UI_MENU();
+                        u.setVisible(true);
+                        u.username(user);
+
+                        //et_id.setText("");
+                        et_password.setText("");
+                    }else if ("2".equals(rs.getString("role"))){
+                        dispose();
+
+                        UI_MENU_1 u = new UI_MENU_1();
+                        u.setVisible(true);
+                        u.username(user);
+                        //et_id.setText("");
+                        et_password.setText("");
+                    }else if("3".equals(rs.getString("role"))){
+                        dispose();
+
+                        UI_MENU_2 u = new UI_MENU_2();
+                        u.setVisible(true);
+                        u.username(user);
+                        //et_id.setText("");
+                        et_password.setText("");
+                    }
+                }else if(et_id.getText() == "" || et_password.getText() == ""){
+                    JOptionPane.showMessageDialog(null, "Username atau Password tidak boleh kosong!");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Maaf Username atau Password anda salah!");
+                }
+
+            }
+            //Jika terjadi kesalahan maka akan muncul message dialog yang menyatakan gagal
+            catch(Exception err){
+                JOptionPane.showMessageDialog(null, err.getMessage());
+            }
+        }
+    }//GEN-LAST:event_et_passwordKeyPressed
+
+    private void et_idKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_et_idKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_et_idKeyPressed
 
     /**
      * @param args the command line arguments

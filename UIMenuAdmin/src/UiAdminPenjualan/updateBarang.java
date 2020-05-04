@@ -181,7 +181,7 @@ public class updateBarang extends javax.swing.JFrame {
         et_id.setBackground(new java.awt.Color(153, 153, 153));
 
         priceLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        priceLabel.setText("Harga ");
+        priceLabel.setText("Harga *");
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         nameLabel.setText("Nama Barang ");
@@ -230,7 +230,7 @@ public class updateBarang extends javax.swing.JFrame {
                         .addComponent(et_rata, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(et_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,14 +320,27 @@ public class updateBarang extends javax.swing.JFrame {
                         rs.last();
 
                         if(rs.getRow() == 1){
-                            sql = "UPDATE barang set stok = stok - " + et_stok.getText() + " where id_barang = '" + et_id.getText() +"'";
-                            PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
-                            p.execute();
+                            
+                            if("0".equals(rs.getString("harga_rata_penjualan"))){
+                                sql = "UPDATE barang set stok = stok - " + et_stok.getText() + ", harga_penjualan= " + et_harga.getText()  + ", harga_rata_penjualan =  " + et_harga.getText() + " where id_barang = '" + et_id.getText() +"'";
+                                 PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+                                 p.execute();
 
 
 
-                            JOptionPane.showMessageDialog(null, "Berhasil Mengurangi Stok!");
-                            saveDataBarangMasuk();
+                                 JOptionPane.showMessageDialog(null, "Berhasil Mengurangi Stok!");
+                                 saveDataBarangMasuk();
+                            } else {
+                            
+                                sql = "UPDATE barang set stok = stok - " + et_stok.getText() + ", harga_penjualan= " + et_harga.getText()  + ", harga_rata_penjualan = (harga_rata_penjualan + " + et_harga.getText() + ") / 2 where id_barang = '" + et_id.getText() +"'";
+                                 PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
+                                 p.execute();
+
+
+
+                                 JOptionPane.showMessageDialog(null, "Berhasil Mengurangi Stok!");
+                                 saveDataBarangMasuk();
+                            }
                         }else{
                              JOptionPane.showMessageDialog(null, "Gagal Update Produk!");
                             }
@@ -349,7 +362,6 @@ public class updateBarang extends javax.swing.JFrame {
         // TODO add your handling code here:
         et_id.setEditable(false);
         et_nama.setEditable(false);
-        et_harga.setEditable(false);
         et_rata.setEditable(false);
         et_jenis.setEditable(false);
         

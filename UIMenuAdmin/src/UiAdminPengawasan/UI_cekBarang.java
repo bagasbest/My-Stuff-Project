@@ -374,13 +374,15 @@ public class UI_cekBarang extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(sql);
 
             while (rs.next()){
-                Object[] obj = new Object[6];
+                Object[] obj = new Object[8];
                 obj[0] = rs.getString("id_barang");
                 obj[1] = rs.getString("nama_barang");
                 obj[2] = rs.getString("stok");
-                obj[3] = rs.getString("harga");
-                obj[4] = rs.getString("harga_rata");
-                obj[5] = rs.getString("jenis_barang");
+                obj[3] = rs.getString("harga_pembelian");
+                obj[4] = rs.getString("harga_penjualan");
+                obj[5] = rs.getString("harga_rata_pembelian");
+                obj[6] = rs.getString("harga_rata_penjualan");
+                obj[7] = rs.getString("jenis_barang");
 
                 model.addRow(obj);
             }
@@ -487,8 +489,10 @@ public class UI_cekBarang extends javax.swing.JFrame {
        model.addColumn("ID Barang");
        model.addColumn("Nama Barang");
        model.addColumn("stok");
-       model.addColumn("Harga");
-       model.addColumn("Harga rata");
+       model.addColumn("Harga pembelian");
+       model.addColumn("Harga penjualan");
+       model.addColumn("Harga rata pembelian");
+       model.addColumn("Harga rata penjualan");
        model.addColumn("Jenis Barang");
        
       
@@ -502,13 +506,16 @@ public class UI_cekBarang extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(sql);
             
             while (rs.next()){
-                Object[] obj = new Object[6];
+                Object[] obj = new Object[8];
+                   
                     obj[0] = rs.getString("id_barang");
                     obj[1] = rs.getString("nama_barang");
                     obj[2] = rs.getString("stok");
-                    obj[3] = rs.getString("harga");
-                    obj[4] = rs.getString("harga_rata");
-                    obj[5] = rs.getString("jenis_barang");
+                    obj[3] = rs.getString("harga_pembelian");
+                    obj[4] = rs.getString("harga_penjualan");
+                    obj[5] = rs.getString("harga_rata_pembelian");
+                    obj[6] = rs.getString("harga_rata_penjualan");
+                    obj[7] = rs.getString("jenis_barang");
                     
                     model.addRow(obj);
             }
@@ -543,13 +550,15 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     ResultSet rs = stat.executeQuery(sql);
             
                     while (rs.next()){
-                         Object[] obj = new Object[6];
+                         Object[] obj = new Object[8];
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
-                            obj[5] = rs.getString("jenis_barang");
+                            obj[3] = rs.getString("harga_pembelian");
+                            obj[4] = rs.getString("harga_penjualan");
+                            obj[5] = rs.getString("harga_rata_pembelian");
+                            obj[6] = rs.getString("harga_rata_penjualan");
+                            obj[7] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
                     }
@@ -574,13 +583,15 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     ResultSet rs = stat.executeQuery(sql);
             
                     while (rs.next()){
-                         Object[] obj = new Object[6];
+                         Object[] obj = new Object[8];
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
-                            obj[5] = rs.getString("jenis_barang");
+                            obj[3] = rs.getString("harga_pembelian");
+                            obj[4] = rs.getString("harga_penjualan");
+                            obj[5] = rs.getString("harga_rata_pembelian");
+                            obj[6] = rs.getString("harga_rata_penjualan");
+                            obj[7] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
                     }
@@ -620,13 +631,15 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     ResultSet rs = stat.executeQuery(sql);
             
                     while (rs.next()){
-                         Object[] obj = new Object[6];
+                         Object[] obj = new Object[8];
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
-                            obj[5] = rs.getString("jenis_barang");
+                            obj[3] = rs.getString("harga_pembelian");
+                            obj[4] = rs.getString("harga_penjualan");
+                            obj[5] = rs.getString("harga_rata_pembelian");
+                            obj[6] = rs.getString("harga_rata_penjualan");
+                            obj[7] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
                     }
@@ -651,13 +664,15 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     ResultSet rs = stat.executeQuery(sql);
             
                     while (rs.next()){
-                         Object[] obj = new Object[6];
+                         Object[] obj = new Object[8];
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
-                            obj[5] = rs.getString("jenis_barang");
+                            obj[3] = rs.getString("harga_pembelian");
+                            obj[4] = rs.getString("harga_penjualan");
+                            obj[5] = rs.getString("harga_rata_pembelian");
+                            obj[6] = rs.getString("harga_rata_penjualan");
+                            obj[7] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
                     }
@@ -682,13 +697,15 @@ public class UI_cekBarang extends javax.swing.JFrame {
                     ResultSet rs = stat.executeQuery(sql);
             
                     while (rs.next()){
-                         Object[] obj = new Object[6];
+                        Object[] obj = new Object[8];
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
-                            obj[5] = rs.getString("jenis_barang");
+                            obj[3] = rs.getString("harga_pembelian");
+                            obj[4] = rs.getString("harga_penjualan");
+                            obj[5] = rs.getString("harga_rata_pembelian");
+                            obj[6] = rs.getString("harga_rata_penjualan");
+                            obj[7] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
                     }

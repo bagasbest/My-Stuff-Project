@@ -72,7 +72,6 @@ public class UI_MENU_2 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tv_username = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -168,9 +167,6 @@ public class UI_MENU_2 extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabel7.setText("Refresh tabel");
-
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setText("Refresh tabel");
 
@@ -207,11 +203,6 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tv_username, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(122, 122, 122))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,11 +227,6 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/minus(1).png"))); // NOI18N
@@ -352,8 +338,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                 obj[0] = rs.getString("id_barang");
                 obj[1] = rs.getString("nama_barang");
                 obj[2] = rs.getString("stok");
-                obj[3] = rs.getString("harga");
-                obj[4] = rs.getString("harga_rata");
+                obj[3] = rs.getString("harga_penjualan");
+                obj[4] = rs.getString("harga_rata_penjualan");
                 obj[5] = rs.getString("jenis_barang");
 
                 model.addRow(obj);
@@ -457,7 +443,6 @@ public class UI_MENU_2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -476,7 +461,7 @@ public class UI_MENU_2 extends javax.swing.JFrame {
        model.addColumn("ID Barang");
        model.addColumn("Nama Barang");
        model.addColumn("stok");
-       model.addColumn("Harga");
+       model.addColumn("Harga penjualan");
        model.addColumn("Harga rata");
        model.addColumn("Jenis Barang");
        
@@ -493,8 +478,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                     obj[0] = rs.getString("id_barang");
                     obj[1] = rs.getString("nama_barang");
                     obj[2] = rs.getString("stok");
-                    obj[3] = rs.getString("harga");
-                    obj[4] = rs.getString("harga_rata");
+                    obj[3] = rs.getString("harga_penjualan");
+                    obj[4] = rs.getString("harga_rata_penjualan");
                     obj[5] = rs.getString("jenis_barang");
                     
                     model.addRow(obj);
@@ -536,8 +521,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
+                            obj[3] = rs.getString("harga_penjualan");
+                            obj[4] = rs.getString("harga_rata_penjualan");
                             obj[5] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
@@ -567,8 +552,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
+                            obj[3] = rs.getString("harga_penjualan");
+                            obj[4] = rs.getString("harga_rata_penjualan");
                             obj[5] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
@@ -612,8 +597,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
+                            obj[3] = rs.getString("harga_penjualan");
+                            obj[4] = rs.getString("harga_rata_penjualan");
                             obj[5] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
@@ -643,8 +628,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
+                            obj[3] = rs.getString("harga_penjualan");
+                            obj[4] = rs.getString("harga_rata_penjualan");
                             obj[5] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
@@ -674,8 +659,8 @@ public class UI_MENU_2 extends javax.swing.JFrame {
                             obj[0] = rs.getString("id_barang");
                             obj[1] = rs.getString("nama_barang");
                             obj[2] = rs.getString("stok");
-                            obj[3] = rs.getString("harga");
-                            obj[4] = rs.getString("harga_rata");
+                            obj[3] = rs.getString("harga_penjualan");
+                            obj[4] = rs.getString("harga_rata_penjualan");
                             obj[5] = rs.getString("jenis_barang");
                     
                          model.addRow(obj);
