@@ -7,6 +7,7 @@ package Login;
 
 import Daftar.Daftar;
 import Koneksi.koneksi;
+import LupaPassword.resetPass;
 import UiAdminPengawasan.UI_MENU;
 import UiAdminPengawasan.UI_MENU;
 import UiAdminPembelian.UI_MENU_1;
@@ -467,10 +468,9 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-        dispose ();
-        resetPassword r = new resetPassword();
-        r.setVisible(true);
-        dispose ();
+        resetPass rp = new resetPass();
+        rp.setVisible(true);
+        dispose();
 
     }//GEN-LAST:event_jLabel8MouseClicked
 

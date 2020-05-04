@@ -336,8 +336,10 @@ public class UI_cekBarang extends javax.swing.JFrame {
         String nama = model.getValueAt(index, 1).toString();
         String stok = model.getValueAt(index, 2).toString();
         String harga = model.getValueAt(index, 3).toString();
-        String hargarata = model.getValueAt(index, 4).toString();
-        String jenis = model.getValueAt(index, 5).toString();
+        String hargajual = model.getValueAt(index, 4).toString();        
+        String hargarata = model.getValueAt(index, 5).toString();
+        String hargaratajual = model.getValueAt(index, 6).toString();
+//        String jenis = model.getValueAt(index, 7).toString();
 
         u.setVisible(true);
         u.pack();       
@@ -346,8 +348,10 @@ public class UI_cekBarang extends javax.swing.JFrame {
         u.et_nama.setText(nama);
         u.et_stok.setText(stok);
         u.et_harga.setText(harga);
+        u.et_harga1.setText(hargajual);
         u.et_rata.setText(hargarata);
-        u.et_jenis.setText(jenis);
+        u.et_rata1.setText(hargaratajual);
+//        u.cb_jenis.setText(jenis);
     }//GEN-LAST:event_tb_barangMouseClicked
 
     private void et_searchbarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_et_searchbarActionPerformed
