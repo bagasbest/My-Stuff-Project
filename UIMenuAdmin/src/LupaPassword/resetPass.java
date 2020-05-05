@@ -6,7 +6,6 @@
 package LupaPassword;
 
 import Login.Login;
-import Login.newPassword;
 import java.util.Properties;
 import java.util.Random;
 import javax.mail.Message;
@@ -361,7 +360,7 @@ public class resetPass extends javax.swing.JFrame {
             lbl_verifikasi.setText("Maaf anda harus mengisi Verifikasi Kode");
         } else if(Integer.valueOf(et_code.getText()) == randomCode) {
             dispose();
-            newPassword np = new newPassword(et_email.getText());
+            newPass np = new newPass(et_email.getText());
             np.setVisible(true);
             this.setVisible(false);
             

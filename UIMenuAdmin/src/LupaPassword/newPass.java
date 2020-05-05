@@ -29,6 +29,13 @@ public class newPass extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    public newPass(String username) {
+        this.user=username;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
