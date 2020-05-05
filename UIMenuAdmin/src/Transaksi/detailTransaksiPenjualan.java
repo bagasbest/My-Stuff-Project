@@ -170,7 +170,7 @@ public class detailTransaksiPenjualan extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(harga_satuan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                            .addComponent(harga_satuan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                             .addComponent(stok)
                             .addComponent(nama_barang)
                             .addComponent(harga_total)
@@ -183,7 +183,7 @@ public class detailTransaksiPenjualan extends javax.swing.JFrame {
                         .addComponent(buat_struk)
                         .addGap(59, 59, 59)
                         .addComponent(print_struk)))
-                .addGap(68, 68, 68)
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );

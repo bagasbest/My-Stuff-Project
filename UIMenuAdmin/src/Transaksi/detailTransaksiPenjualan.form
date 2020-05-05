@@ -188,7 +188,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="harga_satuan" alignment="1" pref="297" max="32767" attributes="0"/>
+                                  <Component id="harga_satuan" alignment="1" pref="315" max="32767" attributes="0"/>
                                   <Component id="stok" alignment="0" max="32767" attributes="0"/>
                                   <Component id="nama_barang" alignment="0" max="32767" attributes="0"/>
                                   <Component id="harga_total" alignment="0" max="32767" attributes="0"/>
@@ -205,7 +205,7 @@
                               <Component id="print_struk" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="642" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
