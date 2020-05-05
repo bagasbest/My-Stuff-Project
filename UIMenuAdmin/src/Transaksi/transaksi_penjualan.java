@@ -10,8 +10,10 @@ import UiAdminPengawasan.UI_MENU;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -102,6 +104,11 @@ public class transaksi_penjualan extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_transaksi_penjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_transaksi_penjualanMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_transaksi_penjualan);
 
         searchBar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/ic_search.png"))); // NOI18N
@@ -226,14 +233,15 @@ public class transaksi_penjualan extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(sql);
 
             while (rs.next()){
-                Object[] obj = new Object[7];
-                obj[0] = rs.getString("id_transaksi");
-                obj[1] = rs.getString("tgl_transaksi");
-                obj[2] = rs.getString("id_barang");
-                obj[3] = rs.getString("nama_barang");
-                obj[4] = rs.getString("jumlah_stok");
-                obj[5] = rs.getString("harga");
-                obj[6] = rs.getString("jenis_barang");
+                Object[] obj = new Object[8];
+                    obj[0] = rs.getString("id_transaksi");
+                    obj[1] = rs.getString("tgl_transaksi");
+                    obj[2] = rs.getString("id_barang");
+                    obj[3] = rs.getString("nama_barang");
+                    obj[4] = rs.getString("jumlah_stok");
+                    obj[5] = rs.getString("harga");
+                    obj[6] = rs.getString("harga_total");
+                    obj[7] = rs.getString("jenis_barang");
 
                 model.addRow(obj);
             }
@@ -258,6 +266,37 @@ public class transaksi_penjualan extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(this.ICONIFIED);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    detailTransaksiPenjualan dp  = new detailTransaksiPenjualan();
+    
+    private void tb_transaksi_penjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_transaksi_penjualanMouseClicked
+        // TODO add your handling code here:
+        int index = tb_transaksi_penjualan.getSelectedRow();
+        TableModel model = tb_transaksi_penjualan.getModel();
+        String no_transaksi = model.getValueAt(index, 0).toString();
+        String tgl_transaksi = model.getValueAt(index, 1).toString();
+        String kode_barang = model.getValueAt(index, 2).toString();
+        String nama_barang = model.getValueAt(index, 3).toString();
+        String jumlah_barang_masuk = model.getValueAt(index, 4).toString();
+        String harga_satuan = model.getValueAt(index, 5).toString();
+        String harga_total = model.getValueAt(index, 6).toString();
+        String jenis_barang = model.getValueAt(index, 7).toString();
+        
+        dp.setVisible(true);
+        dp.pack();
+        dp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dispose();
+        
+        dp.no_transaksi.setText(no_transaksi);
+        dp.tanggal_transaksi.setText(tgl_transaksi);
+        dp.kode_barang.setText(kode_barang);
+        dp.nama_barang.setText(nama_barang);
+        dp.stok.setText(jumlah_barang_masuk);
+        dp.harga_satuan.setText(harga_satuan);
+        dp.harga_total.setText(harga_total);
+        dp.jenis_barang.setText(jenis_barang);
+        
+    }//GEN-LAST:event_tb_transaksi_penjualanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -319,7 +358,8 @@ private void getDatabase() {
        model.addColumn("ID Barang");
        model.addColumn("Nama Barang");
        model.addColumn("Jumlah Stok");
-       model.addColumn("Harga");
+       model.addColumn("Harga satuan");
+       model.addColumn("Harga total");
        model.addColumn("Jenis Barang");
 
        
@@ -341,14 +381,15 @@ private void getDatabase() {
             
             
             while (rs.next()){
-                Object[] obj = new Object[7];
+                Object[] obj = new Object[8];
                     obj[0] = rs.getString("id_transaksi");
                     obj[1] = rs.getString("tgl_transaksi");
                     obj[2] = rs.getString("id_barang");
                     obj[3] = rs.getString("nama_barang");
                     obj[4] = rs.getString("jumlah_stok");
                     obj[5] = rs.getString("harga");
-                    obj[6] = rs.getString("jenis_barang");
+                    obj[6] = rs.getString("harga_total");
+                    obj[7] = rs.getString("jenis_barang");
 
                     
                     

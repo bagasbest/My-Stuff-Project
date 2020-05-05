@@ -10,8 +10,10 @@ import UiAdminPengawasan.UI_MENU;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -82,6 +84,11 @@ public class transaksi_pembelian extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Kembali");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/minus(1).png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,6 +110,11 @@ public class transaksi_pembelian extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_transaksi_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_transaksi_pembelianMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tb_transaksi_pembelian);
 
         searchBar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Drawable/ic_search.png"))); // NOI18N
@@ -223,14 +235,15 @@ public class transaksi_pembelian extends javax.swing.JFrame {
             ResultSet rs = stat.executeQuery(sql);
             
             while (rs.next()){
-                Object[] obj = new Object[7];
+                Object[] obj = new Object[8];
                     obj[0] = rs.getString("id_transaksi");
                     obj[1] = rs.getString("tgl_transaksi");
                     obj[2] = rs.getString("id_barang");
                     obj[3] = rs.getString("nama_barang");
                     obj[4] = rs.getString("jumlah_stok");
                     obj[5] = rs.getString("harga");
-                    obj[6] = rs.getString("jenis_barang");
+                    obj[6] = rs.getString("harga_total");
+                    obj[7] = rs.getString("jenis_barang");
                                         
                     model.addRow(obj);
             }
@@ -245,6 +258,46 @@ public class transaksi_pembelian extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(this.ICONIFIED);
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    detailTransaksiPembelian dp  = new detailTransaksiPembelian();
+    
+    private void tb_transaksi_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_transaksi_pembelianMouseClicked
+        // TODO add your handling code here:
+         int index = tb_transaksi_pembelian.getSelectedRow();
+        TableModel model = tb_transaksi_pembelian.getModel();
+        String no_transaksi = model.getValueAt(index, 0).toString();
+        String tgl_transaksi = model.getValueAt(index, 1).toString();
+        String kode_barang = model.getValueAt(index, 2).toString();
+        String nama_barang = model.getValueAt(index, 3).toString();
+        String jumlah_barang_masuk = model.getValueAt(index, 4).toString();
+        String harga_satuan = model.getValueAt(index, 5).toString();
+        String harga_total = model.getValueAt(index, 6).toString();
+        String jenis_barang = model.getValueAt(index, 7).toString();
+        
+        dp.setVisible(true);
+        dp.pack();
+        dp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        dispose();
+        
+        dp.no_transaksi.setText(no_transaksi);
+        dp.tanggal_transaksi.setText(tgl_transaksi);
+        dp.kode_barang.setText(kode_barang);
+        dp.nama_barang.setText(nama_barang);
+        dp.stok.setText(jumlah_barang_masuk);
+        dp.harga_satuan.setText(harga_satuan);
+        dp.harga_total.setText(harga_total);
+        dp.jenis_barang.setText(jenis_barang);
+        
+        
+    }//GEN-LAST:event_tb_transaksi_pembelianMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        UI_MENU u = new UI_MENU();
+        u.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -309,6 +362,7 @@ public class transaksi_pembelian extends javax.swing.JFrame {
        model.addColumn("Nama Barang");
        model.addColumn("Jumlah Stok");
        model.addColumn("Harga");
+       model.addColumn("Harga total");
        model.addColumn("Jenis Barang");
 
        
@@ -330,17 +384,16 @@ public class transaksi_pembelian extends javax.swing.JFrame {
             
             
             while (rs.next()){
-                Object[] obj = new Object[7];
+                Object[] obj = new Object[8];
                     obj[0] = rs.getString("id_transaksi");
                     obj[1] = rs.getString("tgl_transaksi");
                     obj[2] = rs.getString("id_barang");
                     obj[3] = rs.getString("nama_barang");
                     obj[4] = rs.getString("jumlah_stok");
                     obj[5] = rs.getString("harga");
-                    obj[6] = rs.getString("jenis_barang");
-
-                    
-                    
+                    obj[6] = rs.getString("harga_total");
+                    obj[7] = rs.getString("jenis_barang");
+   
                     model.addRow(obj);
             }
         }catch(SQLException err){

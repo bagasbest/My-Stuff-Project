@@ -46,12 +46,13 @@ public class updateBarang extends javax.swing.JFrame {
       
         try{
             Statement stat = (Statement) kon.getData().createStatement();
-            String sql = "INSERT INTO transaksi_penjualan (id_barang,nama_barang,jumlah_stok,harga,jenis_barang)"
+            String sql = "INSERT INTO transaksi_penjualan (id_barang,nama_barang,jumlah_stok,harga,harga_total,jenis_barang)"
                     + "VALUES ('"
                     + idBarang + "','"
                     + namaBarang + "','"
                     + stok + "','"
                     + harga + "','"
+                    + harga*stok + "','"
                     + jenisBarang + "')";
           
             PreparedStatement p = (PreparedStatement) kon.getData().prepareStatement(sql);
