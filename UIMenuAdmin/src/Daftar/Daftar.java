@@ -381,7 +381,10 @@ public class Daftar extends javax.swing.JFrame {
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin keluar dari mystuff ? ","Konfirmasi keluar aplikasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){   
+            System.exit(0);
+        }
     }//GEN-LAST:event_closeMouseClicked
 
     private void cb_rahasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_rahasiaActionPerformed

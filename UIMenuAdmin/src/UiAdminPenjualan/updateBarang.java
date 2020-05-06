@@ -113,6 +113,11 @@ public class updateBarang extends javax.swing.JFrame {
                 closeMouseClicked(evt);
             }
         });
+        close.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                closeKeyPressed(evt);
+            }
+        });
 
         jLabel8.setBackground(new java.awt.Color(25, 25, 25));
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -356,7 +361,10 @@ public class updateBarang extends javax.swing.JFrame {
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
-        dispose();
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin  ? ","Konfirmasi aplikasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){   
+            dispose();
+        }
     }//GEN-LAST:event_closeMouseClicked
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -372,6 +380,10 @@ public class updateBarang extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(this.ICONIFIED);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void closeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_closeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_closeKeyPressed
 
     
     

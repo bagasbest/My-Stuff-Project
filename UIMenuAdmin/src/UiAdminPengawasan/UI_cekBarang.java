@@ -314,7 +314,10 @@ public class UI_cekBarang extends javax.swing.JFrame {
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin  ? ","Konfirmasi aplikasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){   
+            System.exit(0);
+        }
     }//GEN-LAST:event_closeMouseClicked
 
     private void back_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_menuMouseClicked

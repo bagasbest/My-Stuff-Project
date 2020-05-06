@@ -336,7 +336,10 @@ public class tambahBarang extends javax.swing.JFrame {
 
     private void closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeMouseClicked
         // TODO add your handling code here:
-        dispose();
+       int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin  ? ","Konfirmasi aplikasi", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){   
+            dispose();
+        }
         
     }//GEN-LAST:event_closeMouseClicked
 
