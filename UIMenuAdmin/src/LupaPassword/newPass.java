@@ -256,7 +256,7 @@ public class newPass extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(et_pw.getText().equals(et_ver.getText())) {
             try {
-                String updateQuery = "UPDATE akun SET password=? WHERE id_admin=?";
+                String updateQuery = "UPDATE akun SET password= aes_encrypt(?,'key') WHERE id_admin=?";
                 con = DriverManager.getConnection("jdbc:mysql://localhost/mystuff", "root", "");
                 pst = con.prepareStatement(updateQuery);
                 pst.setString(1, et_ver.getText());

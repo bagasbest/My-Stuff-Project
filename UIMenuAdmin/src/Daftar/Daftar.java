@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author user
@@ -23,6 +22,8 @@ import javax.swing.JOptionPane;
 public class Daftar extends javax.swing.JFrame {
         private boolean maximized;
         String nama,id,pw,rahasia,role;
+        
+        
 
     public Daftar() {
         initComponents();
@@ -64,8 +65,8 @@ public class Daftar extends javax.swing.JFrame {
                 Statement stat = (Statement) kon.getData().createStatement();
                 String sql = "Insert into akun (id_admin,password,nama_admin,role,pertanyaan_rahasia)"
                         + "values ('"
-                        + id + "','"
-                        + pw + "','"
+                        + id + "',aes_encrypt('"
+                        + pw + "','key'),'"
                         + nama + "','"
                         + role + "','"
                         + rahasia + "')";            

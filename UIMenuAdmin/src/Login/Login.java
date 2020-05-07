@@ -403,19 +403,19 @@ public class Login extends javax.swing.JFrame {
 
         try{
             Statement stat = (Statement)connection.getData().createStatement();
-            
+//            select id, aes_decrypt(password,'key') as decryptpassword from akun where id = 1;
             String user = "";
-            String sql_name = "SELECT id_admin,password,role,nama_admin FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";
+            String sql_name = "SELECT id_admin,aes_decrypt(password,'key') as decryptpassword,role,nama_admin FROM akun WHERE id_admin = '" + et_id.getText() + "' and aes_decrypt(password,'key') = '" + et_password.getText() +"'";
             ResultSet rs_name = stat.executeQuery(sql_name);
             if(rs_name.next()){
-                user = rs_name.getString("nama_admin");
+                 user = rs_name.getString("nama_admin");
             }
             
-            String sql = "SELECT id_admin,password,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";            
+            String sql = "SELECT id_admin,aes_decrypt(password,'key') as decryptpassword,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and aes_decrypt(password,'key') = '" + et_password.getText() +"'";           
             ResultSet rs = stat.executeQuery(sql);
             if(rs.next()){               
                 
-                if("1".equals(rs.getString("role"))){
+                if("1".equals(rs.getString("role")) ){
                     dispose();
 
                     UI_MENU u = new UI_MENU();
@@ -424,7 +424,7 @@ public class Login extends javax.swing.JFrame {
        
                     //et_id.setText("");
                     et_password.setText("");
-                }else if ("2".equals(rs.getString("role"))){
+                }else if ("2".equals(rs.getString("role")) ){
                     dispose();
 
                     UI_MENU_1 u = new UI_MENU_1();
@@ -432,7 +432,7 @@ public class Login extends javax.swing.JFrame {
                     u.username(user);
                     //et_id.setText("");
                     et_password.setText("");
-                }else if("3".equals(rs.getString("role"))){
+                }else if("3".equals(rs.getString("role")) ){
                     dispose();
 
                     UI_MENU_2 u = new UI_MENU_2();
@@ -502,49 +502,49 @@ public class Login extends javax.swing.JFrame {
 
             try{
                 Statement stat = (Statement)connection.getData().createStatement();
+//            select id, aes_decrypt(password,'key') as decryptpassword from akun where id = 1;
+            String user = "";
+            String sql_name = "SELECT id_admin,aes_decrypt(password,'key') as decryptpassword,role,nama_admin FROM akun WHERE id_admin = '" + et_id.getText() + "' and aes_decrypt(password,'key') = '" + et_password.getText() +"'";
+            ResultSet rs_name = stat.executeQuery(sql_name);
+            if(rs_name.next()){
+                 user = rs_name.getString("nama_admin");
+            }
+            
+            String sql = "SELECT id_admin,aes_decrypt(password,'key') as decryptpassword,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and aes_decrypt(password,'key') = '" + et_password.getText() +"'";           
+            ResultSet rs = stat.executeQuery(sql);
+            if(rs.next()){               
+                
+                if("1".equals(rs.getString("role")) ){
+                    dispose();
 
-                String user = "";
-                String sql_name = "SELECT id_admin,password,role,nama_admin FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";
-                ResultSet rs_name = stat.executeQuery(sql_name);
-                if(rs_name.next()){
-                    user = rs_name.getString("nama_admin");
+                    UI_MENU u = new UI_MENU();
+                    u.setVisible(true);
+                    u.username(user);
+       
+                    //et_id.setText("");
+                    et_password.setText("");
+                }else if ("2".equals(rs.getString("role")) ){
+                    dispose();
+
+                    UI_MENU_1 u = new UI_MENU_1();
+                    u.setVisible(true);
+                    u.username(user);
+                    //et_id.setText("");
+                    et_password.setText("");
+                }else if("3".equals(rs.getString("role")) ){
+                    dispose();
+
+                    UI_MENU_2 u = new UI_MENU_2();
+                    u.setVisible(true);
+                    u.username(user);
+                    //et_id.setText("");
+                    et_password.setText("");
                 }
-
-                String sql = "SELECT id_admin,password,role FROM akun WHERE id_admin = '" + et_id.getText() + "' and password = '" + et_password.getText() + "'";            
-                ResultSet rs = stat.executeQuery(sql);
-                if(rs.next()){               
-
-                    if("1".equals(rs.getString("role"))){
-                        dispose();
-
-                        UI_MENU u = new UI_MENU();
-                        u.setVisible(true);
-                        u.username(user);
-
-                        //et_id.setText("");
-                        et_password.setText("");
-                    }else if ("2".equals(rs.getString("role"))){
-                        dispose();
-
-                        UI_MENU_1 u = new UI_MENU_1();
-                        u.setVisible(true);
-                        u.username(user);
-                        //et_id.setText("");
-                        et_password.setText("");
-                    }else if("3".equals(rs.getString("role"))){
-                        dispose();
-
-                        UI_MENU_2 u = new UI_MENU_2();
-                        u.setVisible(true);
-                        u.username(user);
-                        //et_id.setText("");
-                        et_password.setText("");
-                    }
-                }else if(et_id.getText() == "" || et_password.getText() == ""){
-                    JOptionPane.showMessageDialog(null, "Username atau Password tidak boleh kosong!");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Maaf Username atau Password anda salah!");
-                }
+            }else if(et_id.getText() == "" || et_password.getText() == ""){
+                JOptionPane.showMessageDialog(null, "Username atau Password tidak boleh kosong!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Maaf Username atau Password anda salah!");
+            }
 
             }
             //Jika terjadi kesalahan maka akan muncul message dialog yang menyatakan gagal
